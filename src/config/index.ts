@@ -4,17 +4,17 @@ export const PRODUCT_CATEGORIES = [
     value: 'real_estate' as const,
     featured: [
       {
-        name: 'Editor picks',
+        name: 'The most luxurious estates',
         href: `/products?category=ui_kits`,
         imageSrc: '/nav/ui-kits/mixed.jpg',
       },
       {
-        name: 'New Arrivals',
+        name: 'New Apartments',
         href: '/products?category=ui_kits&sort=desc',
         imageSrc: '/nav/ui-kits/blue.jpg',
       },
       {
-        name: 'Bestsellers',
+        name: 'Bestselling Houses',
         href: '/products?category=ui_kits',
         imageSrc: '/nav/ui-kits/purple.jpg',
       },
@@ -25,17 +25,17 @@ export const PRODUCT_CATEGORIES = [
     value: 'housings' as const,
     featured: [
       {
-        name: 'Favorite Icon Picks',
+        name: 'The most luxurious estates',
         href: `/products?category=icons`,
         imageSrc: '/nav/icons/picks.jpg',
       },
       {
-        name: 'New Arrivals',
+        name: 'New Apartments',
         href: '/products?category=icons&sort=desc',
         imageSrc: '/nav/icons/new.jpg',
       },
       {
-        name: 'Bestselling Icons',
+        name: 'Bestselling Houses',
         href: '/products?category=icons',
         imageSrc: '/nav/icons/bestsellers.jpg',
       },

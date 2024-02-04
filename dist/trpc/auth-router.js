@@ -104,7 +104,7 @@ exports.authRouter = (0, trpc_1.router)({
                         isVerified = _b.sent();
                         if (!isVerified)
                             throw new server_1.TRPCError({ code: 'UNAUTHORIZED' });
-                        return [2 /*return*/, { success: true }];
+                        return [2 /*return*/, { success: true, sentTomail: 'email' }];
                 }
             });
         });

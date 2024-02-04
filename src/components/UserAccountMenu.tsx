@@ -22,9 +22,9 @@ const UserAccountNav = ({ user }: { user: User }) => {
         asChild
         className='overflow-visible'>
         <Button
-          variant='ghost'
+          variant='outline'
           size='sm'
-          className='relative'>
+          className='relative text-purple-600'>
           My account
         </Button>
       </DropdownMenuTrigger>

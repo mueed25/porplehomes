@@ -4,7 +4,7 @@ import MaxWidthWrapper from './MaxWidthWrapper'
 import { buttonVariants } from './ui/button'
 import { getServerSideUser } from '@/lib/payload.utils'
 import { cookies } from 'next/headers'
-import MobileNav from './MobileNav'
+import MobilNav from './MobilNav'
 import Image from 'next/image'
 
 const Navbar = async () => {
@@ -12,13 +12,12 @@ const Navbar = async () => {
   const { user } = await getServerSideUser(nextCookies)
 
   return (
-    <div className='bg-white sticky z-50 top-0 inset-x-0 h-16'>
+    <div className=' sticky z-50 top-0 inset-x-0 h-16'>
       <header className='relative bg-white'>
         <MaxWidthWrapper>
           <div className='border-b border-gray-200'>
             <div className='flex h-16 items-center'>
-              <MobileNav />
-
+              <MobilNav />
               <div className='ml-4 flex lg:ml-0'>
                 <Link 
                 className='h-10 w-10'

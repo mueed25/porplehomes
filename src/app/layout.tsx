@@ -1,3 +1,4 @@
+
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
@@ -5,6 +6,9 @@ import { cn } from '@/lib/utils'
 import Navbar from '@/components/Navbar'
 import Providers from '@/components/Providers'
 import { Toaster } from 'sonner'
+import ShowNavbar from '@/components/ShowNavbar'
+import Footer from '@/components/Footer'
+import ShowFooter from '@/components/ShowFooter'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,8 +28,13 @@ export default function RootLayout({
        inter.className)}>
         <main className='min-h-screen relative flex flex-col '>
         <Providers>
-        <Navbar />
+          <ShowNavbar>
+          <Navbar />
+          </ShowNavbar>
         {children}
+        <ShowFooter>
+        <Footer />
+        </ShowFooter>
         </Providers>
         </main>
         <Toaster position='top-center' richColors />

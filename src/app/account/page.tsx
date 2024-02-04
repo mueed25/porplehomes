@@ -1,81 +1,158 @@
-import MaxWidthWrapper from '@/components/MaxWidthWrapper'
-import { Input } from '@/components/ui/input'
-import { Search } from 'lucide-react'
-import { DataTable } from '@/components/DataTable'
-import { columns } from '@/components/Column'
 import { getServerSideUser } from '@/lib/payload.utils'
+import Image from 'next/image'
 import { cookies } from 'next/headers'
+import { getPayloadClient } from '@/getPayloadClient'
+import { notFound, redirect } from 'next/navigation'
+import { Property, PropertyFile, User } from '@/payload-types'
+import { PRODUCT_CATEGORIES } from '@/config'
+import { formatPrice } from '@/lib/utils'
+import Link from 'next/link'
+import PaymentStatus from '@/components/PaymentStatus'
+import TenantMessageBoard from '@/components/TenantMessageBoard'
+
 
 const page = async () => {
   const nextCookies = cookies()
+
   const { user } = await getServerSideUser(nextCookies)
+  const payload = await getPayloadClient()
 
-  type Payment = {
-    id: string
-    amount: number
-    status: "pending" | "processing" | "success" | "failed"
-    email: string
+  const { docs: orders } = await payload.find({
+    collection: 'orders',
+    depth: 2,
+    where: {
+      user: {
+        equals: user?.id
+      }
+    },
+  })
+
+  const { docs: props } = await payload.find({
+    collection: 'property',
+    depth: 2,
+    where: {
+      user: {
+        equals: user?.id
+      }
+    },
+  })
+
+  const [order] = orders
+
+  if (user?.role === 'admin' ) {
+    return redirect(
+      `/sign-in?origin=account/Overview`
+    )
   }
-  
-  const payments: Payment[] = [
-    {
-      id: "728ed52f",
-      amount: 100,
-      status: "pending",
-      email: "m@example.com",
-    },
-    {
-      id: "489e1d42",
-      amount: 125,
-      status: "processing",
-      email: "example@gmail.com",
-    },
-    {
-      id: "728ed52f",
-      amount: 100,
-      status: "pending",
-      email: "m@example.com",
-    },
-    {
-      id: "489e1d42",
-      amount: 125,
-      status: "processing",
-      email: "example@gmail.com",
-    },
-    
-  ]
 
-  
+  if ( props ) {
+    return redirect(
+      `/sign-in?origin=account/Overview`
+    )
+  }
+
+
+  const orderUserId =
+    typeof order.user === 'string'
+      ? order.user
+      : order.user.id
+
+  if (orderUserId !== user?.id) {
+    return redirect(
+      `/sign-in?origin=thank-you?orderId=${order.id}`
+    )
+  }
+
+  const products = order.products as Property[]
+
+  const orderTotal = products.reduce((total, product) => {
+    return total + product.price
+  }, 0)
+
+  const Email = user?.email
+
   return (
-    <MaxWidthWrapper>
-      {user? (
-        <div className=' pt-4 px-4'>
-            <section className='flex justify-between'>
-              <div className=''>
-                  <p>Hello {user?.email}</p>
-                  <h3 className=' font-bold'>Wellcome Back!</h3>
-              </div>
-              <div className='flex border rounded-lg shadow-sm px-3 max-sm:hidden'>
-                <span className='flex justify-center items-center'>
-                  <Search />
-                  </span>
-                <Input type='text' className='border-0 outline-none' placeholder='Search related documents..'/>
-              </div>
-            </section>
-            <section>
-              <div className='grid grid-cols-2 max-lg:grid-cols-1 gap-5 pt-8'>
-                <div className='flex border'>
-                  <div></div>
-                </div>
-                <div><DataTable columns={columns} data={payments} /></div>
-                <div><DataTable columns={columns} data={payments} /></div>
-                <div><DataTable columns={columns} data={payments} /></div>
-              </div>
-            </section>
+    <main className='relative lg:min-h-screen min-h-screen flex flex-col justify-between'>
+
+      <div>
+      {order ? <div>
+        <div className=' py-8 sm:px-6 sm:py-8 lg:grid lg:grid-cols-2 lg:px-8 px-4'>
+          <div className='lg:col-start-2'>
+           
+
+            <div className='mt-8 text-sm font-medium'>
+             
+
+              <ul className='mt-6 divide-y divide-gray-200 border-t border-gray-200 text-sm font-medium text-muted-foreground'>
+                {(order.products as Property[]).map(
+                  (product) => {
+                    const downloadUrl = (
+                      product.property_files as PropertyFile
+                    ).url as string
+
+                    const { images } = product.images[0]
+
+                    return (
+                      <li
+                        key={product.id}
+                        className='flex space-x-6 py-6'>
+                        <div className='relative h-24 w-24'>
+                          {typeof images !== 'string' &&
+                          images.url ? (
+                            <Image
+                              fill
+                              src={images.url}
+                              alt={`${product.name} image`}
+                              className='flex-none rounded-md bg-gray-100 object-cover object-center'
+                            />
+                          ) : null}
+                        </div>
+
+                        <div className='flex-auto flex flex-col justify-between'>
+                          <div className='space-y-1'>
+                            <h3 className='text-gray-900'>
+                              {product.name}
+                            </h3>
+
+                            <div className='flex flex-col'>
+                              <p>Category: {product.Property_type}</p>
+                              <p>Duration: {product.Days}</p>
+                              <p>Status: { order.Status === 'Paid'?  'Occupied' : 'Processing'}</p>
+                            </div>
+                          </div>
+
+                          {order._isPaid ? (
+                            <a
+                              href={downloadUrl}
+                              download={product.name}
+                              className='text-blue-600 hover:underline underline-offset-2'>
+                              Download asset
+                            </a>
+                          ) : null}
+                        </div>
+
+                        <p className='flex-none font-medium text-gray-900'>
+                          {formatPrice(product.price)}
+                        </p>
+                      </li>
+                    )
+                  }
+                )}
+              </ul>
+
+              <div className='space-y-6 border-t border-gray-200 pt-6 text-sm font-medium text-muted-foreground'>
+
+            </div>
+          </div>
         </div>
-        ): null}
-    </MaxWidthWrapper>
-    
+        </div>
+      </div> : null}
+      </div>
+
+        <div>
+      {user? <TenantMessageBoard Email={Email} /> : null}
+      </div>
+    </main>
   )
 }
 

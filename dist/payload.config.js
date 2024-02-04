@@ -16,12 +16,15 @@ var PropertyFile_1 = require("./collections/PropertyFile");
 var Workers_1 = require("./collections/Workers");
 var Tenants_1 = require("./collections/Tenants");
 var Media_1 = require("./collections/Media");
+var Tenant1_1 = require("./collections/Tenant1");
+var Announcement_1 = require("./collections/Announcement");
+var TenantMessage_1 = require("./collections/TenantMessage");
 dotenv_1.default.config({
     path: path_1.default.resolve(__dirname, '../.env')
 });
 exports.default = (0, config_1.buildConfig)({
     serverURL: process.env.NEXT_PUBLIC_SERVER_URL || '',
-    collections: [Users_1.Users, Properties_1.Properties, Media_1.Media, Orders_1.Orders, PropertyFile_1.PropertyFiles, Workers_1.Workers, Tenants_1.Tenants],
+    collections: [Users_1.Users, Properties_1.Properties, Media_1.Media, Orders_1.Orders, PropertyFile_1.PropertyFiles, Workers_1.Workers, Tenants_1.Tenants, Tenant1_1.Tenant, Announcement_1.Announcement, TenantMessage_1.TenantMessage,],
     routes: {
         admin: '/sell'
     },

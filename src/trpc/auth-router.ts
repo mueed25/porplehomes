@@ -52,7 +52,7 @@ export const authRouter = router({
             throw new TRPCError({code: 'UNAUTHORIZED'})
 
 
-        return {success: true}
+        return {success: true , sentTomail: 'email'}
     }),
 
     signIn: publicProcedure

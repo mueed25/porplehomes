@@ -62,3 +62,28 @@
   background: white !important;
   scale: 1 !important ;
 }
+.bg-porple{
+  background-color: #7623BA;
+}
+.bg-blac{
+  background-color: #7623BA;
+  opacity: 0.8;
+  /* ackground-color: black;
+  opacity: 0; */
+}
+.level {
+  display: none;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.level.active {
+  display: block;
+  opacity: 1;
+}
+.active .steps {
+  @apply bg-purple-600
+}
+
+.step:not(:first-child):before{
+  @apply content-[''] w-full absolute h-[3px]  bg-purple-500 right-2/4 top-1/3 
+}

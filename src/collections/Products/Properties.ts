@@ -1,8 +1,10 @@
 import {
+    AfterChangeHook,
     BeforeChangeHook,
   } from 'payload/dist/collections/config/types'
-import { CollectionConfig } from "payload/types";
+import { Access,CollectionConfig } from "payload/types";
 import { Property } from '@/payload-types';
+import {  User } from '../../payload-types'
 
 
 const addUser: BeforeChangeHook<Property> = async ({
@@ -14,12 +16,78 @@ const addUser: BeforeChangeHook<Property> = async ({
     return { ...data, user: user.id }
   }
 
+  const syncUser: AfterChangeHook<Property> = async ({
+    req,
+    doc,
+  }) => {
+    const fullUser = await req.payload.findByID({
+      collection: 'users',
+      id: req.user.id,
+    })
+  
+    if (fullUser && typeof fullUser === 'object') {
+      const { products } = fullUser
+  
+      const allIDs = [
+        ...(products?.map((product) =>
+          typeof product === 'object' ? product.id : product
+        ) || []),
+      ]
+  
+      const createdProductIDs = allIDs.filter(
+        (id, index) => allIDs.indexOf(id) === index
+      )
+  
+      const dataToUpdate = [...createdProductIDs, doc.id]
+  
+      await req.payload.update({
+        collection: 'users',
+        id: fullUser.id,
+        data: {
+          products: dataToUpdate,
+        },
+      })
+    }
+  }
+  
+  const isAdminOrHasAccess =
+  (): Access =>
+  ({ req: { user: _user } }) => {
+    const user = _user as User | undefined
+
+    if (!user) return false
+    if (user.role === 'admin') return true
+
+    const userProductIDs = (user.products || []).reduce<
+      Array<string>
+    >((acc, product) => {
+      if (!product) return acc
+      if (typeof product === 'string') {
+        acc.push(product)
+      } else {
+        acc.push(product.id)
+      }
+
+      return acc
+    }, [])
+
+    return {
+      id: {
+        in: userProductIDs,
+      },
+    }
+  }
+
 export const Properties: CollectionConfig = {
     slug: 'property',
     admin: {
         useAsTitle: 'Company_name'
     },
-    access: {},
+    access: {
+        read: isAdminOrHasAccess(),
+        update: isAdminOrHasAccess(),
+        delete: isAdminOrHasAccess(),
+      },
     hooks: {
         beforeChange: [addUser]
     },
@@ -59,9 +127,43 @@ export const Properties: CollectionConfig = {
         required: true
     },
     {
+        name: 'unit_building',
+        label: 'Unit Building',
+        type: 'text',
+        required: true
+    },
+    {
+        name: 'unit_category',
+        label: 'Unit Category',
+        type: 'text',
+        required: true
+    },
+    {
+        name: 'Unit_name',
+        label: 'Unit Name',
+        type: 'text',
+        required: true
+    },
+    {
         name: 'description',
         label: 'product details',
         type: 'textarea'
+    },
+    {
+        name: 'Payment_type',
+        label: 'payment type',
+        type: 'select',
+        required: true,
+        options: [
+            {
+                label: 'Rent',
+                value: 'Rent',
+            },
+            {
+                label: 'Buy',
+                value: 'Buy',
+            },
+        ]
     },
     {
         name: 'price',
@@ -138,30 +240,6 @@ export const Properties: CollectionConfig = {
                 value: 'denied',
             },
         ]
-    },
-    {
-        name: 'priceId',
-        access: {
-            create: () => false,
-            read: () => false,
-            update: () => false,
-        },
-        type: 'text',
-        admin: {
-            hidden: true
-        }
-    },
-    {
-        name: 'paystackId',
-        access: {
-            create: () => false,
-            read: () => false,
-            update: () => false,
-        },
-        type: 'text',
-        admin: {
-            hidden: true
-        }
     },
     {
         name: 'images',

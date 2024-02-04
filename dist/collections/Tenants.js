@@ -152,10 +152,29 @@ exports.Tenants = {
             required: true,
         },
         {
-            name: 'Email',
-            label: 'email',
+            name: 'Adress',
+            label: 'Adress',
             type: 'text',
             required: true,
+        },
+        {
+            name: 'City',
+            label: 'city',
+            type: 'text',
+            required: true,
+        },
+        {
+            name: 'State',
+            label: 'state',
+            type: 'text',
+            required: true,
+        },
+        {
+            name: 'products',
+            type: 'relationship',
+            relationTo: 'property',
+            required: true,
+            hasMany: true,
         },
     ],
 };

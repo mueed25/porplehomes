@@ -90,8 +90,8 @@ var getPayloadClient = function (_a) {
                     if (!cached.promise) {
                         cached.promise = dist_1.default.init(__assign({ email: {
                                 transport: transporter,
-                                fromAddress: 'onboarding@resend.dev',
-                                fromName: 'Phorplehomes',
+                                fromAddress: 'support@porplehomes.com',
+                                fromName: 'Porplehomes',
                             }, secret: process.env.PAYLOAD_SECRET, local: (initOptions === null || initOptions === void 0 ? void 0 : initOptions.express) ? false : true }, (initOptions || {})));
                     }
                     _d.label = 1;

@@ -44,8 +44,8 @@ export const getPayloadClient = async ({ initOptions}: Args = {}): Promise<Paylo
         cached.promise = payload.init({
             email: {
                 transport: transporter,
-                fromAddress: 'onboarding@resend.dev',
-                fromName: 'Phorplehomes',
+                fromAddress: 'support@porplehomes.com',
+                fromName: 'Porplehomes',
               },
             secret: process.env.PAYLOAD_SECRET,
             local: initOptions?.express ? false : true,

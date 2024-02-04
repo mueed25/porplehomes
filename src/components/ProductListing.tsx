@@ -29,8 +29,8 @@ const ProductListing = ({
 
   if (!product || !isVisible) return <ProductPlaceholder />
 
-  const label = PRODUCT_CATEGORIES.find(
-    ({ value }) => value === product.Property_type)?.label
+  // const label = PRODUCT_CATEGORIES.find(
+  //   ({ value }) => value === product.Property_type)?.label
 
   const validUrls = product.images 
     .map(({ images }) =>
@@ -55,11 +55,16 @@ const ProductListing = ({
             {product.name}
           </h3>
           <p className='mt-1 text-sm text-gray-500'>
-            {label}
+            {product.Company_name}
+          </p> 
+          <div className='flex justify-between'>
+          <p className='mt-1 text-sm text-gray-500'>
+            {product.Property_type ? product.Property_type : 'Housing'}
           </p>
           <p className='mt-1 font-medium text-sm text-gray-900'>
             {formatPrice(product.price)}
           </p>
+          </div>
         </div>
       </Link>
     )
@@ -69,7 +74,7 @@ const ProductListing = ({
 const ProductPlaceholder = () => {
   return (
     <div className='flex flex-col w-full'>
-      <div className='relative bg-zinc-100 aspect-square w-full overflow-hidden rounded-xl'>
+      <div className='relative bg-zinc-100 aspect-square w-full overflow-hidden'>
         <Skeleton className='h-full w-full' />
       </div>
       <Skeleton className='mt-4 w-2/3 h-4 rounded-lg' />

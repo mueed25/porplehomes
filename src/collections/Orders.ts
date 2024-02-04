@@ -74,12 +74,12 @@ export const Orders: CollectionConfig = {
           },
         ]
       },
-    {
-      name: 'products',
-      type: 'relationship',
-      relationTo: 'property',
-      required: true,
-      hasMany: true,
-    },
+      {
+        name: 'products',
+        type: 'relationship',
+        relationTo: 'property',
+        required: true,
+        hasMany: true,
+      },
   ],
 }

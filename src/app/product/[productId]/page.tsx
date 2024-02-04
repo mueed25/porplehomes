@@ -2,15 +2,16 @@ import AddToProfile from '@/components/AddToProfile'
 import ImageSlider from '@/components/ImageSlider'
 import MaxWidthWrapper from '@/components/MaxWidthWrapper'
 import ProductReel from '@/components/ProductReel'
-import { buttonVariants } from '@/components/ui/button'
+import { Button, buttonVariants } from '@/components/ui/button'
 import { PRODUCT_CATEGORIES } from '@/config'
 import { getPayloadClient } from '@/getPayloadClient'
 import { formatPrice } from '@/lib/utils'
 import { Check, Shield } from 'lucide-react'
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
+import { notFound, useRouter } from 'next/navigation'
 import { getServerSideUser } from '@/lib/payload.utils'
 import { cookies } from 'next/headers'
+import Add from '@/components/Add'
 
 interface PageProps {
   params: {
@@ -26,6 +27,8 @@ const BREADCRUMBS = [
 const Page = async ({ params }: PageProps) => {
   const nextCookies = cookies()
   const { user } = await getServerSideUser(nextCookies)
+
+
 
   const { productId } = params
 
@@ -44,6 +47,10 @@ const Page = async ({ params }: PageProps) => {
     },
   })
 
+  // const {mutate: createCheckoutSession} = trpc.payment.createSession.useMutation({
+    
+  // })
+
   const [product] = products
 
   if (!product) return notFound()
@@ -53,6 +60,8 @@ const Page = async ({ params }: PageProps) => {
       typeof images === 'string' ? images : images.url
     )
     .filter(Boolean) as string[]
+
+    
 
   return (
     <MaxWidthWrapper className='bg-white'>
@@ -137,7 +146,7 @@ const Page = async ({ params }: PageProps) => {
           <div className='mt-10 lg:col-start-1 lg:row-start-2 lg:max-w-lg lg:self-start'>
             <div>
               <div className='mt-10'>
-                <AddToProfile product={product} />
+                {user? (<AddToProfile mail={user.email} amount={product.price} productid={productId}/>) : (<Add productid={productId}/>)}
               </div>
               <div className='mt-6 text-center'>
                 <div className='group inline-flex text-sm text-medium'>

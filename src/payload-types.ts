@@ -13,6 +13,11 @@ export interface Config {
     media: Media;
     orders: Order;
     property_files: PropertyFile;
+    workers: Worker;
+    Tenant: Tenant;
+    Tenant1: Tenant1;
+    Announce: Announce;
+    TenantM: TenantM;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -20,6 +25,8 @@ export interface Config {
 }
 export interface User {
   id: string;
+  products?: (string | Property)[] | null;
+  product_files?: (string | PropertyFile)[] | null;
   role: 'admin' | 'user';
   updatedAt: string;
   createdAt: string;
@@ -41,16 +48,18 @@ export interface Property {
   Manager_full_name: string;
   Comapany_Contact_number: string;
   name: string;
+  unit_building: string;
+  unit_category: string;
+  Unit_name: string;
   description?: string | null;
+  Payment_type: 'Rent' | 'Buy';
   price: number;
-  Property_type: string;
+  Property_type: 'Housings' | 'Real Estate';
   state: string;
   Bedrooms: number;
   Days: string;
   property_files: string | PropertyFile;
   approvedForSale?: ('pending' | 'approved' | 'denied') | null;
-  priceId?: string | null;
-  paystackId?: string | null;
   images: {
     images: string | Media;
     id?: string | null;
@@ -112,8 +121,61 @@ export interface Order {
   id: string;
   _isPaid: boolean;
   user: string | User;
-  Status: 'active' | 'inactive';
+  Status: 'Paid' | 'Processing' | 'Failed' | 'Renewed';
   products: (string | Property)[];
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Worker {
+  id: string;
+  user?: (string | null) | User;
+  Full_name: string;
+  Phone_number: string;
+  Working_field: string;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Tenant {
+  id: string;
+  user?: (string | null) | User;
+  Full_name: string;
+  Phone_number: string;
+  Gender: string;
+  Adress: string;
+  City: string;
+  State: string;
+  products: (string | Property)[];
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Tenant1 {
+  id: string;
+  Full_name: string;
+  Phone_number: string;
+  Adress: string;
+  Email: string;
+  City: string;
+  State: string;
+  Unit_name: string;
+  Unit_building: string;
+  Unit_category: string;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Announce {
+  id: string;
+  Email: string;
+  Subject: string;
+  Message: string;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface TenantM {
+  id: string;
+  Email: string;
+  Subject: string;
+  Date: string;
+  Message: string;
   updatedAt: string;
   createdAt: string;
 }

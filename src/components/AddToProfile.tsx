@@ -1,51 +1,73 @@
 'use client'
-import { Property, User } from "@/payload-types"
-import { PaystackButton } from "react-paystack"
-import { buttonVariants } from "./ui/button";
+import React from 'react';
+import { useFlutterwave, closePaymentModal } from 'flutterwave-react-v3';
+import { Button } from './ui/button';
+import { trpc } from '@/trpc/client';
+import  {useRouter} from 'next/navigation'
+import { User } from '@/payload-types';
 
-
-
-const AddToCartButton =  ({
-  product,
-}: {
-  product: Property, 
+const AddToProfile =  ({
+  productid, 
+  mail,
+  amount
+}: { 
+ productid: string,
+ mail: string,
+ amount: number
 }) => {
+  const router = useRouter()
+
+  var data = ''
+  const { mutate: createCheckoutSession, isLoading  } =
+    trpc.payment.createSession.useMutation({
+      onSuccess: ({ id }) => {
+        data = id
+      },
+    })
 
 
-
+    
   const config = {
-    reference: (new Date()).getTime().toString(),
-    email: 'example@gmail.com',
-    amount: product.price, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
-    publicKey: 'pk_test_84cbd3c68a85b3a2538633f312d0510170dc4d6d',
-  };
-  
-
-  const handlePaystackSuccessAction = (reference: Date) => {
-    // Implementation for whatever you want to do with reference and after success call.
-    console.log(reference);
-  };
-
-  // you can call this function anything
-  const handlePaystackCloseAction = () => {
-    // implementation for  whatever you want to do when the Paystack dialog closed.
-    console.log('closed')
-  }
-
-  const componentProps = {
-      ...config,
-      text: 'Proceed to pay ',
-      onSuccess: (reference: Date) => handlePaystackSuccessAction(reference),
-      onClose: handlePaystackCloseAction,
+    public_key: 'FLWPUBK_TEST-38935239633287a4c8644135ab2e4bf2-X',
+    tx_ref: String(Date.now()),
+    amount: amount,
+    currency: 'NGN',
+    payment_options: 'card,mobilemoney,ussd',
+    customer: {
+      email: mail,
+       phone_number: '',
+      name: '',
+    },
+    customizations: {
+      title: 'my Payment Title',
+      description: 'Payment for items in cart',
+      logo: 'https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg',
+    },
   };
 
+  const handleFlutterPayment = useFlutterwave(config);
 
   return (
-
-    <PaystackButton className={buttonVariants({
-      className: 'w-full'
-    })} {...componentProps} />
-  )
+    <div className="">
+      <Button
+      className='w-full'
+        onClick={() => {
+          createCheckoutSession({productid})
+          handleFlutterPayment({
+            callback: (response) => {
+              
+               console.log(response);
+                closePaymentModal() // this will close the modal programmatically
+                router.replace(`/thank-you?orderId=${productid}`)
+            },
+            onClose: () => {},
+          });
+        }}
+      >
+        Proceed to pay the amount
+      </Button>
+    </div>
+  );
 }
 
-export default AddToCartButton
+export default AddToProfile

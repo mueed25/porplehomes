@@ -10,9 +10,6 @@ export const AdminList = [{
     name: 'People',
     icon: <PersonStandingIcon />
   },,{
-    name: 'Accountin',
-    icon: <FolderArchive />
-  },,{
     name: 'Communication',
     icon: <ClipboardListIcon />
   },]

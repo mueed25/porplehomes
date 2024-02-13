@@ -81,7 +81,7 @@ const Page = () => {
 
   return (
     <div className='w-full'>
-      <div className='flex pt-6 px-4 pb-4  flex-col'>
+      <div className='flex pt-6 lg:px-4 max-lg:2 pb-4  flex-col'>
         <Link href='/account/People'  className={buttonVariants({
           variant: 'link',
           className: 'text-muted-foreground  h-8 w-16 mb-2'
@@ -91,7 +91,7 @@ const Page = () => {
         
         <h2 className=' flex items-center'>People - Add a Tenant</h2>
       </div>
-    <div className='mt-3 w-full flex pt-8  flex-col px-6 shadow-md rounded-md py-8'>
+    <div className='mt-3 w-full flex pt-8  flex-col lg:px-4 max-lg:px-2 shadow-md rounded-md py-8 mb-6'>
       <div className='flex justify-center'>
       {
         steps.map((item, index) => (
@@ -213,8 +213,8 @@ const Page = () => {
                 className="mt-1 p-2 border rounded-md w-full"
               />
             </div>
-            <div className=''>
-            <Button>Submit</Button>
+            <div className='w-full'>
+            <Button className='max-md:w-full'>Submit</Button>
             </div>
               </div>
             ) : null}
@@ -235,7 +235,7 @@ const Page = () => {
 
       <button onClick={() => { currentState === steps.length ? setcurrentState(1) :
         setcurrentState((prev)=> prev + 1)
-      }} className='px-4 py-2 bg-purple-600 mt-6 text-white'>{
+      }} className='px-4 py-2 bg-purple-600 mt-6 text-white '>{
         currentState === steps.length ? 'Finished' : 'Next'
       }</button>
       </div>}

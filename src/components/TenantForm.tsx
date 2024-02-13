@@ -145,7 +145,7 @@ const Form = ({
 
   return (
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
-      <form onSubmit={handleSubmit(onSubmit)} className="w-full  mx-auto mt-8 px-8 shadow-sm py-8">
+      <form onSubmit={handleSubmit(onSubmit)} className="w-full  mx-auto mt-8 px-8 shadow-md py-8">
       <div className='lg:grid-cols-3  grid lg:gap-4 gap-4 mt-4 '>
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="fullName">
@@ -184,8 +184,8 @@ const Form = ({
       </div>
       </div>
 
-    <div className='flex justify-end'>
-      <Button type='submit'>
+    <div className='flex justify-end w-full'>
+      <Button type='submit' className='max-md:w-full'>
         Proceed
       </Button>
     </div>

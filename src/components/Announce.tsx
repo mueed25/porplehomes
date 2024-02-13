@@ -27,14 +27,14 @@ const Announce = () => {
 
   return (
     <div className='w-full '>
-      <div className='pt-4 pb-4 '>
+      <div className='pt-2 pb-2 '>
         <p className='text-muted-foreground'>Hi There,</p>
         <h2 className='font-semibold'>Announcement</h2>
       </div>
 
-     {!pathname.includes('/account/Communication/Compose')?  <div className=" mt-6 lg:px-8 max-lg:px-4 flex justify-between">
+     {!pathname.includes('/account/Communication/Compose')?  <div className=" mt-2 pr-2 flex justify-between">
 
-     <div className="flex space-x-4">
+     <div className="flex space-x-2 ">
         <button
           className={`px-4 py-2 ${
             pathname.includes('/account/Communication') ? 'bg-porple text-white' : 'bg-gray-300'

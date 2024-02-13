@@ -8,6 +8,7 @@ import { cookies } from 'next/headers'
 import { getPayloadClient } from '@/getPayloadClient'
 import { Property } from '@/payload-types'
 import { cn, formatPrice } from '@/lib/utils'
+import { redirect } from 'next/navigation'
 
 
 
@@ -27,6 +28,12 @@ const page = async () => {
     },
   })
 
+  if (!user) {
+    return redirect(
+      `/sign-in?origin=account/Overview`
+    )
+  }
+
   const filteredroperty = allorder.map(items => items.id)
 
   const { docs: orders } = await payload.find({
@@ -40,16 +47,17 @@ const page = async () => {
   })
 
   const { docs: prods } = await payload.find({
-    collection: 'property',
+    collection: 'users',
     depth: 2,
     where: {
-      user: {
+      id: {
         equals: user?.id,
       },
     },
   })
 
-  const filteredprods = prods.map( items => items.id)
+  const filteredprods = prods.map( prod => (prod.products as Property[])?.map( pro => pro.id)).flat()
+console.log(filteredprods)
 
 
   const { docs: allorders } = await payload.find({
@@ -110,8 +118,16 @@ const page = async () => {
 
 
 
-const Admins = allorders.map(items => (items.products as Property[]).map((balance) => balance.price)).flat()
-const AdminBalance = Admins.reduce((total, balance) => {
+const Admins = allorders?.map(items => (items.products as Property[]).map((balance) => balance.price)).flat()
+
+
+const AdminBalance = Admins?.reduce((total, balance) => {
+  return total + (balance)
+})
+
+const UsersBalance = allUserOrders?.map(items => (items.products as Property[]).map((balance) => balance.price)).flat()
+
+const userBalance = Admins?.reduce((total, balance) => {
   return total + (balance)
 })
 // const Adminbalance = allorders.reduce( (total, balance) => {
@@ -121,48 +137,6 @@ const AdminBalance = Admins.reduce((total, balance) => {
 // const orderTotal = products.reduce((total, product) => {
 //   return total + product.price
 // }, 0)
-
-  const TenantMessage = [
-    {
-    icon: <MessageCircleIcon className=' ' color='#7623BA'/>,
-    name: 'Alibiewi',
-    date: '2/1/2022',
-    message:'i have something to report to you about an issue in our house',
-  },
-  {
-    icon: <MessageCircleIcon color='#7623BA'/>,
-    name: 'Alibiewi',
-    date: '2/1/2022',
-    message:'i have something to report to you about an issue in our house',
-  },
-  {
-    icon: <MessageCircleIcon color='#7623BA'/>,
-    name: 'Alibiewi',
-    date: '2/1/2022',
-    message:'i have something to report to you about an issue in our house',
-  },
-  ]
-
-  const TenantPayment = [
-    {
-    icon: <MessageCircleIcon />,
-    name: 'Alibiewi',
-    date: '2/1/2022',
-    message:'i have something to report to you about an issue in our house',
-  },
-  {
-    icon: <MessageCircleIcon />,
-    name: 'Alibiewi',
-    date: '2/1/2022',
-    message:'i have something to report to you about an issue in our house',
-  },
-  {
-    icon: <MessageCircleIcon className=' bg-purple-800'/>,
-    name: 'Alibiewi',
-    date: '2/1/2022',
-    message:'i have something to report to you about an issue in our house',
-  },
-  ]
 
   
   return (
@@ -174,10 +148,6 @@ const AdminBalance = Admins.reduce((total, balance) => {
             <h3 className='font-bold text-md'>Wellcome Back!</h3>
           </div>
           <div className='flex '>
-            <div className='flex justify-center items-center border px-2 rounded-md shadow-md'>
-              <Search />
-              <Input type='text' className='border-0'/>
-            </div>
             <div className='flex justify-center items-center pl-2 max-md:hidden'>
               <Image 
               src='/hippo-email-sent.png'
@@ -190,7 +160,7 @@ const AdminBalance = Admins.reduce((total, balance) => {
         </section>
 
         <section>
-        {!user ? 'No data found ' : null}
+        {!user ? '' : null}
           { user?.role == 'admin' ? (
             <div className='grid max-md:grid-cols-1 grid-cols-2 gap-6 py-6 grid-rows-2 '>
             <div className='shadow-md rounded-xl py-2'>
@@ -298,7 +268,7 @@ const AdminBalance = Admins.reduce((total, balance) => {
           ) : null }
           { user ? (
             <div>
-            { user.role !== 'admin' ? (
+            { user.role === 'user' ? (
              <div className='grid max-md:grid-cols-1 grid-cols-2 gap-6 py-6 grid-rows-2 '>
             <div className='shadow-md rounded-xl py-2'>
                 <h2 className='px-4 py-4 font-semibold'>Profit and Available Balance</h2>
@@ -308,7 +278,7 @@ const AdminBalance = Admins.reduce((total, balance) => {
                   <div className='flex h-full pt-8 py-4 px-4 items-center'>
                     <div className='flex-col h-40 w-40 rounded-full border-4 border-[#7623BA] flex justify-center items-center'>
                         <h3 className='font-semibold'>Balance</h3>
-                        <p className='font-semibold '>NGN {AdminBalance}</p>
+                        <p className='font-semibold '>NGN {UsersBalance.length !== 0 ? userBalance : '****'}</p>
                     </div>
                   </div>
                 </div>
@@ -320,7 +290,7 @@ const AdminBalance = Admins.reduce((total, balance) => {
                   <h1>No data Available</h1>
                   </div>
                   </div>
-                  <div className=' shadow-lg rounded-xl py-2'>
+                  <div className=' shadow-lg rounded-xl py-2 min-h-40 '>
                 <h2 className='px-4 py-4 font-semibold'>Recent Payment Recieved</h2>
                   <Separator />
                   <div className='px-4'>
@@ -333,15 +303,24 @@ const AdminBalance = Admins.reduce((total, balance) => {
                                 <MessageCircleIcon color='#7623BA'/>
                               </div>
                               <div className='flex justify-between w-full'>
-                              <div className='flex flex-col'>
-                                <h2>{item.unit_building}</h2>
+                              <div>
+                                
+                              <div className='flex '>
+                                <h2 className='pr-2'>{item.unit_building}</h2>
                                 <p>{item.Unit_name}</p>
                               </div>
-                              <div>
-                                <h2>{items.Status}</h2>
+                              <h1>{(items.createdAt).slice(0,10)}</h1>
                               </div>
                               <div>
-                                <h2>{item.price}</h2>
+                                {items.Status === 'Processing'? <h2 className='bg-purple-700 px-2 py-1 text-white'>{items.Status}</h2> : null
+                                }
+                                {items.Status === 'Paid'? <h2 className='bg-red-400 px-2 py-1 text-white'>{items.Status}</h2> : null
+                                }
+                                {items.Status === 'Failed'? <h2 className='bg-red-400 px-2 py-1 text-white'>{items.Status}</h2> : null
+                                }
+                              </div>
+                              <div>
+                                <h2>NGN {item.price}</h2>
                               </div>
                               </div>
                             </div>
@@ -351,8 +330,9 @@ const AdminBalance = Admins.reduce((total, balance) => {
                     
                   </div>
                   </div>
-                  <div className=' shadow-lg rounded-xl py-2'>
+                  <div className=' shadow-lg rounded-xl py-2 min-h-48'>
                 <h2 className='px-4 py-4 font-semibold'>Recent Members/Tenants</h2>
+                <div className='min-h-44'>
                   <Separator />
                   <div className='px-4'>
                   {/* {TenantMessage.map( props => ( */}
@@ -363,20 +343,24 @@ const AdminBalance = Admins.reduce((total, balance) => {
                               <div className='flex justify-center items-center px-2 mx-2  bg-purple-300'>
                                 <MessageCircleIcon color='#7623BA'/>
                               </div>
-                              <div className='flex flex-col justify-between w-full'>
+                              <div className='flex justify-between w-full'>
+                                <div>
                               <div>
                                 <h2>{items.Full_name}</h2>
                               </div>
-                              <div className='flex flex-col'>
-                                <h2>{item.unit_building}</h2>
+                              <div className='flex'>
+                                <h2 className='pr-2'>{item.unit_building}</h2>
                                 <p>{item.Unit_name}</p>
                               </div>
+                              </div>
+                              <div><h1>{(items.createdAt).slice(0,10)}</h1></div>
                               </div>
                             </div>
                           ))}
                         </div>
                   ))}
                     
+                  </div>
                   </div>
                   </div>
                   

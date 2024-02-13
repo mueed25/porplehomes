@@ -1,6 +1,6 @@
 // pages/Announcement.js
 'use client'
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { trpc } from '@/trpc/client';
 import { Label } from '@radix-ui/react-label';
@@ -45,7 +45,7 @@ const Announcement = () => {
       </div>
 
       <form className=" " onSubmit={handleSubmit(onSubmit)}>
-      <div className='grid lg:grid-cols-2 grid-cols-1 gap-4 lg:px-8 max-lg:px-4 py-6'>
+      <div className='grid lg:grid-cols-2 grid-cols-1 gap-4 lg:px-4 max-lg:px-2 py-6'>
         <div className="mb-4">
           <Label htmlFor="messageTo" className="block text-sm font-medium text-gray-600">
             Message To
@@ -92,18 +92,21 @@ const Announcement = () => {
         </div>
         </div>
 
-        <div className='flex justify-center'>
+        <div className='flex justify-center w-full'>
         <Button
           type="submit"
-          className="bg-purple-500 text-white py-2 px-4 rounded-md hover:bg-purple-600"
+          className="bg-purple-500 max-md:w-full text-white py-2 px-8 rounded-md hover:bg-purple-600"
         >
           Send
         </Button>
         </div>
       </form>
 
-      <div className="mt-8">
-        <Link href="/account/Communication">
+      <div className="mt-8 w-full mb-4">
+        <Link href="/account/Communication" className={buttonVariants({
+          variant: 'link',
+          className: 'max-md:w-full px-4 py-1'
+        })}>
         Go back to Home
         </Link>
       </div>

@@ -69,6 +69,10 @@ export const Workers: CollectionConfig= {
         update: ({req}) => req.user.role === 'admin',
         delete: ({req}) => req.user.role === 'admin',
     },
+    admin: {
+        hidden: ({ user }) => user.role !== 'admin',
+        defaultColumns: ['id'],
+      },
     fields: [
         {
           name: 'user',

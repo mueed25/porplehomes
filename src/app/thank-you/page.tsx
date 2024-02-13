@@ -9,6 +9,7 @@ import { formatPrice } from '@/lib/utils'
 import Link from 'next/link'
 import PaymentStatus from '@/components/PaymentStatus'
 import TenantForm from '@/components/TenantForm'
+import MaxWidthWrapper from '@/components/MaxWidthWrapper'
 
 interface PageProps {
   searchParams: {
@@ -59,10 +60,11 @@ const ThankYouPage = async ({
   
 
   return (
-    <main className='relative lg:min-h-full'>
+    <main className=' lg:min-h-full '>
       <div>
-        <div className='md:px-4 max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-1 lg:gap-x-8 lg:py-32 xl:gap-x-24'>
-          <div className='lg:col-start-2'>
+        <div className=''>
+          <MaxWidthWrapper>
+          <div className='lg:col-start-2  py-6 lg:px-4 max-lg:px-2'>
             <p className='text-sm font-medium text-blue-600'>
               Payment successful
             </p>
@@ -91,7 +93,9 @@ const ThankYouPage = async ({
             <p className='text-muted-foreground mt-2'>Proceed with the tenant application form</p>
 
             <TenantForm productid={productid}/>
+
           </div>
+          </MaxWidthWrapper>
         </div>
       </div>
     </main>

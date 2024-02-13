@@ -10,8 +10,8 @@ const Buttons = () => {
     }
 
     return (
-        <div className='w-full flex justify-end pt-4'>
-            <Button onClick={handleClick}>Create New</Button>
+        <div className='w-full flex justify-end pt-4 b-4'>
+            <Button className='max-md:w-full' onClick={handleClick}>Create New</Button>
         </div>
     )
 }

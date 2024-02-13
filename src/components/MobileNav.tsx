@@ -1,7 +1,7 @@
 'use client'
 
 import { PRODUCT_CATEGORIES } from '@/config'
-import { Menu, X } from 'lucide-react'
+import { Home, Menu, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -63,6 +63,12 @@ const MobileNav = () => {
             </div>
 
             <div className='my-8 mb-10'>
+            <div className='px-4 flex py-4'>
+                  <span><Home /></span>
+                  <Link 
+                  className='ml-2'
+                  href={`/`}>Home</Link>
+            </div>
               {AdminList.map(list => (
                 <div key={list?.name} className='px-4 flex py-4'>
                   <span>{list?.icon}</span>

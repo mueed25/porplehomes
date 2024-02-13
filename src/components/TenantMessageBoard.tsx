@@ -39,10 +39,10 @@ const TenantMessageBoard = ({Email}: {Email: string}) => {
       
 
   return (
-    <div className="w-full mt-8 px-6 shadow-sm pb-4">
+    <div className="w-full mt-8 px-4 shadow-sm pb-4">
 
       <form className=" " onSubmit={handleSubmit(onSubmit)}>
-      <div className='grid lg:grid-cols-2 grid-cols-1 gap-4 lg:px-8 max-lg:px-4 py-6'>
+      <div className='grid lg:grid-cols-2 grid-cols-1 gap-4 lg:px-8  py-6'>
       <div className="mb-4">
           <Label htmlFor="messageTo" className="block text-sm font-medium text-gray-600">
             Subject
@@ -73,10 +73,10 @@ const TenantMessageBoard = ({Email}: {Email: string}) => {
         </div>
         </div>
 
-        <div className='flex justify-end'>
+        <div className='flex md:justify-end md:px-4 md:w-full  pb-4'>
         <Button
           type="submit"
-          className="bg-purple-500 text-white py-2 px-4 rounded-md hover:bg-purple-600"
+          className="bg-purple-500 max-md:w-full text-white py-2 px-4 rounded-md hover:bg-purple-600"
         >
           Send
         </Button>

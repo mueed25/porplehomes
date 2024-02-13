@@ -13,10 +13,6 @@ var yourOwn = function (_a) {
 };
 exports.Orders = {
     slug: 'orders',
-    admin: {
-        useAsTitle: 'Your Orders',
-        description: 'A summary of all your orders on DigitalHippo.',
-    },
     access: {
         read: yourOwn,
         update: function (_a) {
@@ -31,6 +27,13 @@ exports.Orders = {
             var req = _a.req;
             return req.user.role === 'admin';
         },
+    },
+    admin: {
+        hidden: function (_a) {
+            var user = _a.user;
+            return user.role !== 'admin';
+        },
+        defaultColumns: ['id'],
     },
     fields: [
         {

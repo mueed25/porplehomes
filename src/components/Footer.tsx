@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <div className='flex flex-col pt-16 '>
         <Separator />
-        <div className='py-16 px-8'>
+        <div className='py-16 lg:px-8 px-4'>
             <MaxWidthWrapper className=' grid lg:grid-cols-2 grid-cols-1 gap-4'>
                 <div>
                 <h1 className='text-[1.5rem] pb-6'>Our trusted partners</h1> 
@@ -37,13 +37,13 @@ const Footer = () => {
         </div>
         <div className='pt-8 bg-porple text-muted foreground'>
             <MaxWidthWrapper>
-                <div className='px-8 grid lg:grid-cols-2 grid-cols-1 gap-4 py-8'>
+                <div className='lg:px-8 px-4 grid lg:grid-cols-2 grid-cols-1 gap-4 py-8'>
                     <div>
-                        <h1 className='text-[2rem]  text-white'>Discover</h1>
+                        <h1 className='text-[1.7rem]  text-white'>Discover</h1>
                         <h2 className='text-white pt-4'>Kano</h2>
                     </div>
                     <div className='max-lg:pt-6'>
-                    <h1 className='text-[2rem]  text-white'>Contact Us</h1>
+                    <h1 className='text-[1.7rem]  text-white'>Contact Us</h1>
                         <div>
                         <div className='flex pt-4'>
                         <LocateIcon />

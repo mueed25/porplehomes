@@ -138,7 +138,8 @@ exports.Properties = {
         delete: isAdminOrHasAccess(),
     },
     hooks: {
-        beforeChange: [addUser]
+        afterChange: [syncUser],
+        beforeChange: [addUser],
     },
     fields: [
         {

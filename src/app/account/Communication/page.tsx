@@ -40,7 +40,7 @@ const page = async () => {
 
   return (
     
-    <div className='w-full pt-4 lg:px-8 max-lg:px-4'>
+    <div className='w-full pt-4 px-2 '>
             {!user? 'No Data available' : null}
             {user?.role === 'admin' ? <DataTable columns={columns} data={data} /> : null}
     </div>

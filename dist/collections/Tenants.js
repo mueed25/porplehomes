@@ -122,6 +122,13 @@ exports.Tenants = {
             return req.user.role === 'admin';
         },
     },
+    admin: {
+        hidden: function (_a) {
+            var user = _a.user;
+            return user.role !== 'admin';
+        },
+        defaultColumns: ['id'],
+    },
     fields: [
         {
             name: 'user',

@@ -203,11 +203,11 @@ const HomeComp = () => {
         </MaxWidthWrapper>
       </section>
 
-      <section className='py-8 max-lg:px-10'>
+      <section className='py-6 max-lg:px-4 '>
         <MaxWidthWrapper className='grid lg:grid-cols-2 grid-cols-1 gap-4'>
           <div>
             <h1 className='text-[2rem]' >Why Porplehomes?</h1>
-            <div className='pt-8'>
+            <div className='pt-4'>
               {cat.map((list, index) => (
                 <div className='flex py-4' key={index}>
                   <div className='flex pr-4  justify-center items-center'>
@@ -236,8 +236,8 @@ const HomeComp = () => {
       <section className='py-16'>
         <MaxWidthWrapper className=''>
         <div className='flex flex-col justify-center items-center py-16 px-2 bg-yellow-100'>
-                <h1 className='text-xl font-semibold'>Book an instant property tour from your phone</h1>
-                <p className='text-muted-foreground'>Enter your mobiles number to recieve an instant call from us</p>
+                <h1 className='lg:text-xl text-lg font-semibold text-center'>Book an instant property tour</h1>
+                <p className='text-muted-foreground md:text-base text-center'>Enter your mobiles number to recieve an instant call from us</p>
                 
         <form className="max-w-sm mx-auto">
             <div className="relative flex pl-2 rounded-xl  border shadow-md bg-white mt-4">

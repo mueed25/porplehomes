@@ -52,26 +52,37 @@ const MobileNav = () => {
 
       <div className='fixed  inset-0 z-40 flex border-4'>
         <div className='w-4/5 '>
-          <div className='relative flex w-full max-w-sm flex-col h-screen  bg-white pb-12 shadow-xl'>
-            <div className='flex px-4 pb-2 pt-5'>
+          <div className='relative flex w-full max-w-sm flex-col h-screen  bg-white pb-12 shadow-xl justify-between'>
+            <div className='flex flex-col px-4 pb-2 pt-5'>
+              <div>
               <button
                 type='button'
                 onClick={() => setIsOpen(false)}
                 className='relative -m-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400'>
                 <X className='h-6 w-6' aria-hidden='true' />
               </button>
-            </div>
-
-            <div className='my-8 mb-40'>
-                <div className='px-4 flex py-4'>
+              </div>
+              <div className='my-2 '>
+                <div className='px-4 flex py-2'>
                   <Link 
                   href={`/account`}>Account</Link>
                 </div>
-                <div className='px-4 flex'>
+                <div className='px-4 flex py-2'>
                   <Link 
-                  href={`/account/sell`}>Seller Dashboard</Link>
+                  href={`/sell`}>Seller Dashboard</Link>
+                </div>
+                <div className='px-4 flex py-2'>
+                  <Link 
+                  href={`/account/Overview`}>Overview</Link>
+                </div>
+                <div className='px-4 flex py-2'>
+                  <Link 
+                  href={`/account`}>Message</Link>
                 </div>
             </div>
+            </div>
+
+            
 
             <div className='space-y-6 border-t border-gray-200 px-4 py-6'>
               <div className='flow-root'>

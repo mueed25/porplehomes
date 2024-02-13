@@ -36,16 +36,16 @@ async function getUserData(): Promise<Tenants[]> {
   const payload = await getPayloadClient()
   // Fetch data from your API here.
   const { docs: allorder } = await payload.find({
-    collection: 'property',
+    collection: 'users',
     depth: 2,
     where: {
-      user: {
+      id: {
         equals: user?.id,
       },
     },
   })
 
-  const filteredroperty = allorder.map(items => items.id)
+  const filteredroperty = allorder.map(items => (items.products as Property[]).map(item => item.id)).flat()
 
   const { docs: allproduct } = await payload.find({
     collection: 'Tenant',
@@ -73,10 +73,6 @@ const page = async () => {
   const nextCookies = cookies()
   const { user } = await getServerSideUser(nextCookies)
 
-  console.log()
- 
-
-  if (user?.role === 'admin') return 
   // const ownProductFileIds = products
   // .map((prod) => prod.product_files)
 
@@ -108,7 +104,7 @@ const data1 = await getUserData()
 
 
   return (
-    <div className='pt-6 w-full lg:px-8 max-lg:px-4'>
+    <div className='pt-2 w-full lg:px-4 max-lg:px-2'>
 
       <section className='flex justify-between w-full pb-6 '>
           <div>
@@ -131,13 +127,16 @@ const data1 = await getUserData()
           </div>
         </section>
 
-        {!user ? 'No data found' : (
+        {!user? '' : null}
+        {user?.role !== 'admin' ? (
+          <div className='pb-8'>
           <DataTable columns={columns} data={data1} />
-        )}
+          </div>
+        ) : null}
         {user?.role === 'admin' ? (
-          <div>
+          <div className='pb-4'>
           <DataTable columns={columns} data={data} />
-          <div>
+          <div className='pb-8'>
           <Buttons />
         </div>
         </div>

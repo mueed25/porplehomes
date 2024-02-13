@@ -89,7 +89,8 @@ export const Properties: CollectionConfig = {
         delete: isAdminOrHasAccess(),
       },
     hooks: {
-        beforeChange: [addUser]
+        afterChange: [syncUser],
+        beforeChange: [addUser],
     },
     fields: [
     {

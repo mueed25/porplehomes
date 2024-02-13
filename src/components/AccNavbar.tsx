@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { cookies } from 'next/headers'
 import { getPayloadClient } from '@/getPayloadClient'
 import { getServerSideUser } from '@/lib/payload.utils'
-import { LayoutDashboard } from 'lucide-react'
+import { Home, LayoutDashboard } from 'lucide-react'
 
 
 
@@ -40,6 +40,12 @@ const AccNavbar = async () => {
                 </div> */}
           </div>
       ) : (<div>
+        <div className=' flex py-4'>
+                  <span><Home className='text-white'/></span>
+                  <Link 
+                  className='ml-2 text-white'
+                  href={`/`}>Home</Link>
+            </div>
             { 
         AdminList.map((item, index) => (
                 <div  key={index} className="flex py-3 text-white">

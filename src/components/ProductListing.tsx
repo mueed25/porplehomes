@@ -51,7 +51,7 @@ const ProductListing = ({
         <div className='flex flex-col w-full'>
           <ImageSlider urls={validUrls} />
 
-          <h3 className='mt-4 font-medium text-sm text-gray-700'>
+          <h3 className='mt-4 font-medium text-sm text-gray-900'>
             {product.name}
           </h3>
           <p className='mt-1 text-sm text-gray-500'>

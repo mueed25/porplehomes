@@ -11,4 +11,9 @@ const nextConfig = {
       },
 }
 
+// domains: [
+//   'localhost',
+//   'digitalhippo-production.up.railway.app',
+// ],
+
 module.exports = nextConfig

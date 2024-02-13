@@ -6,7 +6,7 @@ import { Button, buttonVariants } from '@/components/ui/button'
 import { PRODUCT_CATEGORIES } from '@/config'
 import { getPayloadClient } from '@/getPayloadClient'
 import { formatPrice } from '@/lib/utils'
-import { Check, Shield } from 'lucide-react'
+import { Check, ComputerIcon, Home, Shield } from 'lucide-react'
 import Link from 'next/link'
 import { notFound, useRouter } from 'next/navigation'
 import { getServerSideUser } from '@/lib/payload.utils'
@@ -21,7 +21,7 @@ interface PageProps {
 
 const BREADCRUMBS = [
   { id: 1, name: 'Home', href: '/' },
-  { id: 2, name: 'Products', href: '/products' },
+  { id: 2, name: 'Products', href: '/' },
 ]
 
 const Page = async ({ params }: PageProps) => {
@@ -124,14 +124,23 @@ const Page = async ({ params }: PageProps) => {
                   Eligible for instant tour and reservation 
                 </p>
               </div>
+              <div className='py-4 flex flex-col'>
+              <div className='flex'>
+                <Home />
               <p className='ml-2 text-sm text-muted-foreground'>
-                  to take an istant tour 
-                  <Link
-                  href='https://porplehomes.com'
-                  className={buttonVariants({
-                    variant: 'link'
-                  })}>Check it up from the main website</Link> 
-                </p>
+                  {product.Bedrooms} bedrooms
+                </p> 
+              </div>
+              <div className='py-4 flex' >
+                <ComputerIcon />
+              <p className='ml-2 text-sm text-muted-foreground'>
+                  {product.Company_name}  
+                </p> 
+              </div>
+              <p className='ml-2 text-sm text-muted-foreground'>
+                  Duration of {product.Days} days. 
+                </p> 
+              </div>
             </section>
           </div>
 

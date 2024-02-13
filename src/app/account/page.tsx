@@ -41,50 +41,45 @@ const page = async () => {
 
   if (user?.role === 'admin' ) {
     return redirect(
-      `/sign-in?origin=account/Overview`
-    )
-  }
-
-  if ( props ) {
-    return redirect(
-      `/sign-in?origin=account/Overview`
+      `/account/Overview`
     )
   }
 
 
   const orderUserId =
-    typeof order.user === 'string'
+    typeof order?.user === 'string'
       ? order.user
-      : order.user.id
+      : order?.user.id
 
-  if (orderUserId !== user?.id) {
+  // if (orderUserId !== user?.id) {
+  //   return redirect(
+  //     `/sign-in?origin=thank-you?orderId=${order.id}`
+  //   )
+  // }
+
+  if (!user) {
     return redirect(
-      `/sign-in?origin=thank-you?orderId=${order.id}`
+      `/sign-in?origin=account`
     )
   }
 
-  const products = order.products as Property[]
+  const products = order?.products as Property[]
 
-  const orderTotal = products.reduce((total, product) => {
+  const orderTotal = products?.reduce((total, product) => {
     return total + product.price
   }, 0)
 
   const Email = user?.email
 
   return (
-    <main className='relative lg:min-h-screen min-h-screen flex flex-col justify-between'>
+    <main className=' lg:min-h-screen min-h-screen flex flex-col justify-between w-full '>
 
       <div>
-      {order ? <div>
+      {user ? <div>
         <div className=' py-8 sm:px-6 sm:py-8 lg:grid lg:grid-cols-2 lg:px-8 px-4'>
-          <div className='lg:col-start-2'>
-           
-
             <div className='mt-8 text-sm font-medium'>
-             
-
-              <ul className='mt-6 divide-y divide-gray-200 border-t border-gray-200 text-sm font-medium text-muted-foreground'>
-                {(order.products as Property[]).map(
+              <ul className='mt-4 border-t border-gray-200 text-sm font-medium text-muted-foreground'>
+                {(order?.products as Property[]).map(
                   (product) => {
                     const downloadUrl = (
                       product.property_files as PropertyFile
@@ -139,12 +134,7 @@ const page = async () => {
                   }
                 )}
               </ul>
-
-              <div className='space-y-6 border-t border-gray-200 pt-6 text-sm font-medium text-muted-foreground'>
-
-            </div>
           </div>
-        </div>
         </div>
       </div> : null}
       </div>

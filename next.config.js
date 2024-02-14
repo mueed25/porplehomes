@@ -4,7 +4,7 @@ const nextConfig = {
        
       domains: [
         'localhost',
-        'digitalhippo-production.up.railway.app',
+        'p-porplehomes-production.up.railway.app',
       ],
       },
 }

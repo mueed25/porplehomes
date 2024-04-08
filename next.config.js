@@ -5,7 +5,7 @@ const nextConfig = {
       remotePatterns: [
         {
           protocol: 'https',
-          hostname: 'nw-porplehomes-production.up.railway.app',
+          hostname: 'porplehomes.onrender.com',
           port: '',
         },
       ],

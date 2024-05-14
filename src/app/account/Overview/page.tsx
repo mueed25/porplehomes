@@ -1,8 +1,9 @@
-import {MessageCircleIcon, Search} from 'lucide-react'
+import {MessageCircleIcon, Search, FlipVertical, Landmark, ClipboardType, Eye} from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import Image from 'next/image'
 import { Separator } from '@/components/ui/separator'
 import { DataTableDemo } from '@/components/DataTable'
+import Visible from '@/components/Visible'
 import { getServerSideUser } from '@/lib/payload.utils'
 import { cookies } from 'next/headers'
 import { getPayloadClient } from '@/getPayloadClient'
@@ -13,6 +14,8 @@ import { redirect } from 'next/navigation'
 
 
 const page = async () => {
+
+  
 
   const nextCookies = cookies()
   const { user } = await getServerSideUser(nextCookies)
@@ -56,8 +59,10 @@ const page = async () => {
     },
   })
 
-  const filteredprods = prods.map( prod => (prod.products as Property[])?.map( pro => pro.id)).flat()
-console.log(filteredprods)
+  // const filteredprods = prods.map( prod => (prod.products as Property[])?.map( pro => pro.id)).flat()
+  const filteredprods = prods.map(prods => (
+    prods.products? (prods.products as Property[]).map(prod => prod.id) : [] )
+  ).flat()
 
 
   const { docs: allorders } = await payload.find({
@@ -69,6 +74,8 @@ console.log(filteredprods)
     collection: 'TenantM',
     depth: 2,
   })
+
+  console.log(allmessages)
 
   const { docs: allUserOrders } = await payload.find({
     collection: 'orders',
@@ -145,7 +152,7 @@ const userBalance = Admins?.reduce((total, balance) => {
         <section className='flex justify-between w-full '>
           <div>
             <p className='flex text-muted-foreground text-sm'>Hello {user?.email}</p>
-            <h3 className='font-bold text-md'>Wellcome Back!</h3>
+            <h3 className='font-bold text-md text-purple-800'>Wellcome Back!</h3>
           </div>
           <div className='flex '>
             <div className='flex justify-center items-center pl-2 max-md:hidden'>
@@ -168,10 +175,17 @@ const userBalance = Admins?.reduce((total, balance) => {
                 <Separator />
                 <div className='px-4'>
                   
-                  <div className='flex h-full pt-8 py-4 px-4 items-center'>
-                  <div className='flex-col h-40 w-40 rounded-full border-4 border-[#7623BA] flex justify-center items-center'>
+                  <div className='flex h-full pt-8 py-4 px-4 items-center justify-between'>
+                  <div className='flex-col h-40 w-40 rounded-full border-8 border-[#7623BA] flex justify-center items-center'>
                         <h3 className='font-semibold'>Balance</h3>
-                        <p className='font-semibold '>NGN {AdminBalance}</p>
+                        {/* <p className='font-semibold '>NGN {AdminBalance}</p> */}
+                        <div><Visible balance={AdminBalance} /></div>
+                        
+                    </div>
+                    <div className=' flex flex-col  px-10 align-left max-sm:hidden'>
+                      <div className='flex items-center'><div className='w-4 h-4 mx-2 bg-purple-600'></div> <h1 className='font-semibold'>Tenant Rent Fees</h1></div>
+                      <div className='flex py-4 items-center'><div className='w-4 h-4 mx-2 bg-purple-600'></div> <h1 className='font-semibold'>Landloard Registration</h1></div>
+                      <div className='flex items-center'><div className='w-4 h-4 mx-2 bg-purple-600'></div> <h1 className='font-semibold'>Agent Registration</h1></div>
                     </div>
                   </div>
                 </div>
@@ -191,7 +205,7 @@ const userBalance = Admins?.reduce((total, balance) => {
                                 <h2>{items.Email}</h2>
                                 <p>{items.Subject}</p>
                               </div>
-                              <div>
+                              <div className='max-sm:hidden'>
                                 <h2>{items.Date}</h2>
                               </div>
                               </div>
@@ -202,7 +216,7 @@ const userBalance = Admins?.reduce((total, balance) => {
                   </div>
                   </div>
                   <div className=' shadow-lg rounded-xl py-2'>
-                <h2 className='px-4 py-4 font-semibold'>Recent Payment Recieved</h2>
+                <h2 className='px-4 py-4 text-md font-bold text-purple-800'>Recent Payment Recieved</h2>
                   <Separator />
                   <div className='px-4'>
                   {/* {TenantMessage.map( props => ( */}
@@ -210,22 +224,22 @@ const userBalance = Admins?.reduce((total, balance) => {
                         <div key={items.id}>
                           {(items.products as Property[]).map(item => (
                             <div key={item.id} className='flex px-4 py-2'>
-                              <div className='flex justify-center items-center px-2 mx-2  bg-purple-300'>
-                                <MessageCircleIcon color='#7623BA'/>
+                              <div className='flex justify-center items-center px-2 mx-2  bg-purple-300 rounded-md'>
+                                <Landmark color='#7623BA'/>
                               </div>
                               <div className='flex justify-between w-full'>
                               <div className='flex flex-col'>
-                                <h2>{item.unit_building}</h2>
+                                <h2 className='font-bold'>{item.unit_building}</h2>
                                 <p>{item.Unit_name}</p>
                               </div>
-                              <div>
-                                {items.Status === 'Processing'? <h2 className='bg-purple-600 py-1 px-2 text-white'>{items.Status}</h2> : null}
-                                {items.Status === 'Paid'? <h2 className='bg-red-600 py-1 px-2 text-white'>{items.Status}</h2> : null}
-                                {items.Status === 'Failed'? <h2 className='bg-red-600 py-1 px-2 text-white'>{items.Status}</h2> : null}
+                              <div className='max-sm:hidden'>
+                                {items.Status === 'Processing'? <h2 className='bg-purple-600 py-1 px-2 text-white rounded-md'>{items.Status}</h2> : null}
+                                {items.Status === 'Paid'? <h2 className='bg-red-600 py-1 px-2 text-white rounded-md'>{items.Status}</h2> : null}
+                                {items.Status === 'Failed'? <h2 className='bg-red-600 py-1 px-2 text-white rounded-md'>{items.Status}</h2> : null}
 
                               </div>
                               <div>
-                                <h2>{item.price}</h2>
+                                <h2 className='font-bold'>NGN {item.price}</h2>
                               </div>
                               </div>
                             </div>
@@ -244,15 +258,15 @@ const userBalance = Admins?.reduce((total, balance) => {
                         <div key={items.id}>
                           {(items.products as Property[]).map(item => (
                             <div key={item.id} className='flex px-4 py-2'>
-                              <div className='flex justify-center items-center px-2 mx-2  bg-purple-300'>
-                                <MessageCircleIcon color='#7623BA'/>
+                              <div className='flex justify-center items-center px-2 mx-2  bg-purple-300 rounded-md'>
+                                <ClipboardType color='#7623BA'/>
                               </div>
                               <div className='flex flex-col justify-between w-full'>
                               <div>
-                                <h2>{items.Full_name}</h2>
+                                <h2 className='font-bold'>{items.Full_name}</h2>
                               </div>
-                              <div className='flex flex-col'>
-                                <h2>{item.unit_building}</h2>
+                              <div className='flex '>
+                                <h2>{item.unit_building} ,</h2>
                                 <p>{item.Unit_name}</p>
                               </div>
                               </div>
@@ -270,30 +284,46 @@ const userBalance = Admins?.reduce((total, balance) => {
             <div>
             { user.role === 'user' ? (
              <div className='grid max-md:grid-cols-1 grid-cols-2 gap-6 py-6 grid-rows-2 '>
-            <div className='shadow-md rounded-xl py-2'>
-                <h2 className='px-4 py-4 font-semibold'>Profit and Available Balance</h2>
+            
+            
+        <div className='shadow-md rounded-xl py-2'>
+                <h2 className='px-4 py-4 font-bold text-md text-purple-800'>Profit and Available Balance</h2>
                 <Separator />
                 <div className='px-4'>
                   
                   <div className='flex h-full pt-8 py-4 px-4 items-center'>
-                    <div className='flex-col h-40 w-40 rounded-full border-4 border-[#7623BA] flex justify-center items-center'>
+                    <div className='flex-col h-40 w-40 rounded-full border-8 border-[#7623BA] flex justify-center items-center'>
                         <h3 className='font-semibold'>Balance</h3>
-                        <p className='font-semibold '>NGN {UsersBalance.length !== 0 ? userBalance : '****'}</p>
+                        <p className='font-semibold '>NGN {UsersBalance.length !== 0 ? userBalance : ' **** '}</p>
+                    </div>
+                    <div>
+                    <div className=' flex flex-col  px-10 align-left max-sm:hidden'>
+                      <div className='flex items-center'><div className='w-4 h-4 mx-2 bg-purple-600'></div> <h1 className='font-semibold'>Tenant Rent Fees</h1></div>
+                      <div className='flex py-4 items-center'><div className='w-4 h-4 mx-2 bg-purple-600'></div> <h1 className='font-semibold'>Landloard Registration</h1></div>
+                      <div className='flex items-center'><div className='w-4 h-4 mx-2 bg-purple-600'></div> <h1 className='font-semibold'>Agent Registration</h1></div>
+                    </div>
                     </div>
                   </div>
                 </div>
+        </div>
+
+
+        <div className=' shadow-md rounded-xl py-2'>
+            <div className=''> 
+            <h2 className='px-4 py-4 font-bold text-md text-purple-800'>Profit and Available Balance</h2>
+              
             </div>
-            <div className=' shadow-lg rounded-xl py-2'>
-                <h2 className='px-4 py-4 font-semibold'>Profit and Available Balance</h2>
                   <Separator />
-                  <div className='px-4'>
-                  <h1>No data Available</h1>
+                  <div className=' px-4 flex justify-center items-center  text-bold max-sm:h-48'>
+                  <h1 className=''>Not Found</h1>
                   </div>
-                  </div>
-                  <div className=' shadow-lg rounded-xl py-2 min-h-40 '>
-                <h2 className='px-4 py-4 font-semibold'>Recent Payment Recieved</h2>
+            </div>
+
+
+            <div className=' shadow-md rounded-xl py-2 min-h-40 '>
+                <h2 className='px-4 py-4 font-bold text-md text-purple-800'>Recent Payment Recieved</h2>
                   <Separator />
-                  <div className='px-4'>
+                  <div className='px-4 max-sm:h-48'>
                   {/* {TenantMessage.map( props => ( */}
                   {allUserOrders.slice(0,4).map(items => (
                         <div key={items.id}>
@@ -329,12 +359,14 @@ const userBalance = Admins?.reduce((total, balance) => {
                   ))}
                     
                   </div>
-                  </div>
-                  <div className=' shadow-lg rounded-xl py-2 min-h-48'>
-                <h2 className='px-4 py-4 font-semibold'>Recent Members/Tenants</h2>
+              </div>
+
+
+            <div className=' shadow-md rounded-xl py-2 min-h-48 '>
+                <h2 className='px-4 py-4 font-bold text-md text-purple-800'>Recent Members/Tenants</h2>
                 <div className='min-h-44'>
                   <Separator />
-                  <div className='px-4'>
+                  <div className='px-4 max-sm:h-48'>
                   {/* {TenantMessage.map( props => ( */}
                   {allUserproduct.slice(0,4).map(items => (
                         <div key={items.id}>
@@ -362,7 +394,9 @@ const userBalance = Admins?.reduce((total, balance) => {
                     
                   </div>
                   </div>
-                  </div>
+             </div>
+
+
                   
             </div>
             ) : null}

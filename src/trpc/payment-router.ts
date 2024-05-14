@@ -160,7 +160,7 @@ export const paymentRouter = router({
             Email: Email,
             Subject: Subject,
             Message: Message,
-            Date: String(Date.now()),
+            Date: String(new Date().toLocaleString()),
           },
         })
   

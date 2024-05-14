@@ -45,7 +45,11 @@ async function getUserData(): Promise<Tenants[]> {
     },
   })
 
-  const filteredroperty = allorder.map(items => (items.products as Property[]).map(item => item.id)).flat()
+  
+  // const filteredroperty = allorder.map(items => (items.products as Property[]).map(item => item.id)).flat()
+  const filteredroperty = allorder.map(items => (
+    items.products? (items.products as Property[]).map(item => item.id) : [] )
+  ).flat()
 
   const { docs: allproduct } = await payload.find({
     collection: 'Tenant',
@@ -57,6 +61,7 @@ async function getUserData(): Promise<Tenants[]> {
     }
   })
 
+  console.log(allproduct)
   const filtered = allproduct.map(items => ({
         id: items.id,
         TenantName: items.Full_name,

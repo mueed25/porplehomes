@@ -6,7 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { AdminList } from './List'
+import { AdminList, AdminList1 } from './List'
 import { Admin } from 'mongodb'
 
 const MobileNav = () => {
@@ -63,13 +63,9 @@ const MobileNav = () => {
               </button>
               </div>
               <div className='my-2 '>
-                <div className='px-4 flex py-2'>
+              <div className='px-4 flex py-2'>
                   <Link 
                   href={`/account`}>Account</Link>
-                </div>
-                <div className='px-4 flex py-2'>
-                  <Link 
-                  href={`/sell`}>Seller Dashboard</Link>
                 </div>
                 <div className='px-4 flex py-2'>
                   <Link 
@@ -77,14 +73,22 @@ const MobileNav = () => {
                 </div>
                 <div className='px-4 flex py-2'>
                   <Link 
-                  href={`/account`}>Message</Link>
+                  href={`/account/Residentials`}>Residentials</Link>
+                </div>
+                <div className='px-4 flex py-2'>
+                  <Link 
+                  href={`/account/People`}>People</Link>
+                </div>
+                <div className='px-4 flex py-2'>
+                  <Link 
+                  href={`/account/Communication`}>Communication</Link>
                 </div>
             </div>
             </div>
 
             
 
-            <div className='space-y-6 border-t border-gray-200 px-4 py-6'>
+            {/* <div className='space-y-6 border-t border-gray-200 px-4 py-6'>
               <div className='flow-root'>
                 <Link
                   onClick={() => closeOnCurrent('/sign-in')}
@@ -101,7 +105,7 @@ const MobileNav = () => {
                   Sign up
                 </Link>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

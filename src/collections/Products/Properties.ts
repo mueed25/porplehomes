@@ -221,7 +221,7 @@ export const Properties: CollectionConfig = {
         name: 'approvedForSale',
         label: 'Product files',
         type: 'select',
-        defaultValue: 'pending',
+        defaultValue: 'approved',
         access: {
             create: ({req}) => req.user.role === 'admin',
             read: ({req}) => req.user.role === 'admin',

@@ -36,13 +36,13 @@ const HomeNav = async () => {
               </div> */}
 
               <div className='ml-auto flex items-center'>
-                <div className='hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6'>
+                <div className=' flex lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6'>
                   {user ? null : (
                     <Link
                       href='/sign-in'
                       className={buttonVariants({
                         variant: 'outline',
-                        className: 'text-purple-800 hover:text-purple-600 shadow-sm'
+                        className: 'border text-purple-800 hover:text-purple-600 shadow-md mr-2 rounded-lg'
                       })}>
                       Sign in
                     </Link>
@@ -50,7 +50,7 @@ const HomeNav = async () => {
 
                   {user ? null : (
                     <span
-                      className='h-6 w-px bg-white'
+                      className='h-6 w-px bg-white max-lg:hidden'
                       aria-hidden='true'
                     />
                   )}
@@ -62,7 +62,7 @@ const HomeNav = async () => {
                       href='/sign-up'
                       className={buttonVariants({
                         variant: 'outline',
-                        className: 'text-purple-800 hover:text-purple-600 shadow-sm'
+                        className: 'max-md:hidden text-purple-800 hover:text-purple-600 shadow-md rounded-lg'
                       })}>
                       Create account
                     </Link>
@@ -70,7 +70,7 @@ const HomeNav = async () => {
 
                   {user ? (
                     <span
-                      className='h-6 w-px bg-white'
+                      className='h-6 w-px max-lg:hidden bg-white'
                       aria-hidden='true'
                     />
                   ) : null}
@@ -78,7 +78,7 @@ const HomeNav = async () => {
                   {user ? null : (
                     <div className='flex lg:ml-6'>
                       <span
-                        className='h-6 w-px bg-porple'
+                        className='max-lg:hidden h-6 w-px bg-porple'
                         aria-hidden='true'
                       />
                     </div>

@@ -8,9 +8,10 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { cn } from '@/lib/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { ArrowRight, Loader2 } from 'lucide-react'
+import { ArrowRight, Loader2, EyeOff, Eye } from 'lucide-react'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
+import { useState } from 'react'
 
 import {
   AuthCredentialValidator,
@@ -77,6 +78,8 @@ const Page = () => {
     signIn({ email, password })
   }
 
+  const [visibility, setvisibility] = useState(false)
+
   return (
     <>
       <div className='container relative flex pt-20 flex-col items-center justify-center lg:px-0'>
@@ -121,15 +124,26 @@ const Page = () => {
 
                 <div className='grid gap-1 py-2'>
                   <Label htmlFor='password'>Password</Label>
+                  <div className='flex'>
                   <Input
                     {...register('password')}
-                    type='password'
+                    type={visibility? 'text' : 'password'}
                     className={cn({
                       'focus-visible:ring-red-500':
                         errors.password,
                     })}
                     placeholder='Password'
                   />
+                  <button 
+                  onClick={ () => {
+                    setvisibility(prevValue => {
+                      return !prevValue
+                    })
+                  }} 
+                  className='flex justify-center items-center px-2'>
+                    {!visibility? <EyeOff /> : <Eye />}
+                  </button>
+                  </div>
                   {errors?.password && (
                     <p className='text-sm text-red-500'>
                       {errors.password.message}

@@ -85,7 +85,7 @@ export const TenantMessage: CollectionConfig= {
         {
             name: 'Date',
             label: 'Date',
-            type: 'date',
+            type: 'text',
             required: true
         },
         {

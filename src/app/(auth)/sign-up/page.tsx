@@ -11,6 +11,9 @@ import { trpc } from "@/trpc/client"
 import {toast} from 'sonner'
 import { ZodError } from "zod"
 import { useRouter } from "next/navigation"
+import { useState } from 'react'
+import {  EyeOff, Eye } from 'lucide-react'
+
 
 
 const Page = () => {
@@ -61,6 +64,8 @@ const router = useRouter()
     mutate({ email, password })
   }
 
+  const [visibility, setvisibility] = useState(false)
+
   return (
     <>
       <div className='container relative flex pt-20 flex-col items-center justify-center lg:px-0'>
@@ -103,15 +108,24 @@ const router = useRouter()
 
                 <div className='grid gap-1 py-2'>
                   <Label htmlFor='password'>Password</Label>
+                  <div className='flex'>
                   <Input
                     {...register('password')}
-                    type='password'
+                    type={visibility? 'text' : 'password'}
                     className={cn({
                       'focus-visible:ring-red-500':
-                        errors.password
+                        errors.password,
                     })}
                     placeholder='Password'
                   />
+                  <button onClick={ () => {
+                    setvisibility(prevValue => {
+                      return !prevValue
+                    })
+                  }} className='flex justify-center items-center px-2'>
+                    {!visibility? <EyeOff /> : <Eye />}
+                  </button>
+                  </div>
                   {errors?.password && (
                     <p className='text-sm text-red-500'>
                       {errors.password.message}

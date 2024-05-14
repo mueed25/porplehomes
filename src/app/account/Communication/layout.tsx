@@ -11,7 +11,7 @@ export default function AccountLayout({
   }) {
     
     return (
-        <section className=' flex max-lg:px-2 flex-col w-full '>
+        <section className=' flex px-1 md:px-2 flex-col w-full '>
             <Announce />
             {children}
         </section>

@@ -6,7 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { AdminList } from './List'
+import { AdminList, AdminList1 } from './List'
 import { Admin } from 'mongodb'
 
 const MobileNav = () => {
@@ -52,7 +52,7 @@ const MobileNav = () => {
 
       <div className='fixed  inset-0 z-40 flex '>
         <div className='w-4/5'>
-          <div className='relative flex w-full max-w-sm flex-col h-screen justify-between  bg-white pb-12 shadow-xl'>
+          <div className='relative flex w-full max-w-sm flex-col h-screen  bg-white pb-12 shadow-xl'>
             <div className='flex px-4 pb-2 pt-5'>
               <button
                 type='button'
@@ -64,12 +64,18 @@ const MobileNav = () => {
 
             <div className='my-8 mb-10'>
             <div className='px-4 flex py-4'>
-                  <span><Home /></span>
+                  <span><Home color='#7623BA'/></span>
                   <Link 
                   className='ml-2'
                   href={`/`}>Home</Link>
             </div>
-              {AdminList.map(list => (
+            <div className='px-4 flex py-4'>
+                  <span><Home color='#7623BA'/></span>
+                  <Link 
+                  className='ml-2'
+                  href={`/sell`}>Seller Dashboard</Link>
+            </div>
+              {AdminList1.map(list => (
                 <div key={list?.name} className='px-4 flex py-4'>
                   <span>{list?.icon}</span>
                   <Link 
@@ -79,7 +85,7 @@ const MobileNav = () => {
               ))}
             </div>
 
-            <div className='space-y-6 border-t border-gray-200 px-4 py-6'>
+            {/* <div className='space-y-6 border-t border-gray-200 px-4 py-6'>
               <div className='flow-root'>
                 <Link
                   onClick={() => closeOnCurrent('/sign-in')}
@@ -96,7 +102,7 @@ const MobileNav = () => {
                   Sign up
                 </Link>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

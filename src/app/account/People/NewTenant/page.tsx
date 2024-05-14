@@ -80,18 +80,18 @@ const Page = () => {
       // createdAt: string;
 
   return (
-    <div className='w-full'>
-      <div className='flex pt-6 lg:px-4 max-lg:2 pb-4  flex-col'>
+    <div className='w-full max-sm:mx-2  mx-6 mb-8 px-6 max-sm:px-2'>
+      <div className=' flex pt-2 lg:px-4 max-lg:2 pb-4  flex-col'>
         <Link href='/account/People'  className={buttonVariants({
           variant: 'link',
-          className: 'text-muted-foreground  h-8 w-16 mb-2'
+          className: 'text-muted-foreground '
         })}>
         Go back
         </Link>
         
-        <h2 className=' flex items-center'>People - Add a Tenant</h2>
+        <h2 className=' flex justify-center text-md'>People - Add a Tenant</h2>
       </div>
-    <div className='mt-3 w-full flex pt-8  flex-col lg:px-4 max-lg:px-2 shadow-md rounded-md py-8 mb-6'>
+    <div className='mt-3 w-full flex pt-8  flex-col lg:px-4 max-lg:px-2 shadow-md rounded-lg py-8 mb-4 max-md:px-6'>
       <div className='flex justify-center'>
       {
         steps.map((item, index) => (
@@ -227,7 +227,7 @@ const Page = () => {
         currentState === 1 ? null : (
           <button onClick={() => { currentState === steps.length ? setcurrentState(1) :
             setcurrentState((prev)=> prev - 1)
-          }} className='px-4 py-2 bg-purple-600 mt-6 text-white'>{
+          }} className='rounded-sm px-4 py-2 bg-purple-600 mt-6 text-white'>{
             currentState === 1 ? null : 'Preview'
           }</button>
         )
@@ -235,7 +235,7 @@ const Page = () => {
 
       <button onClick={() => { currentState === steps.length ? setcurrentState(1) :
         setcurrentState((prev)=> prev + 1)
-      }} className='px-4 py-2 bg-purple-600 mt-6 text-white '>{
+      }} className='rounded-sm px-4 py-2 bg-purple-600 mt-6 text-white '>{
         currentState === steps.length ? 'Finished' : 'Next'
       }</button>
       </div>}

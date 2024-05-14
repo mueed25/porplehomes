@@ -14,6 +14,8 @@ type Inputs = {
   Subject: string
 }
 
+console.log(String(Date.now()))
+
 const TenantMessageBoard = ({Email}: {Email: string}) => {
 
   const router = useRouter()
@@ -48,7 +50,7 @@ const TenantMessageBoard = ({Email}: {Email: string}) => {
             Subject
           </Label>
           <Input
-            type="email"
+            type="text"
             className="mt-1 p-2 w-full border rounded-md"
             placeholder="Subject"
             {...register("Subject", { required: 'Field is required' })}
@@ -67,6 +69,7 @@ const TenantMessageBoard = ({Email}: {Email: string}) => {
             placeholder="Enter your message"
             {...register("Message", { required: 'Field is required' })}
           ></textarea>
+          
           {errors.Message && (
             <p className="text-red-500 text-sm mt-1">{errors.Message.message}</p>
           )}

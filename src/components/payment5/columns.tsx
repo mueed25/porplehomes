@@ -106,7 +106,7 @@ export const columns: ColumnDef<Tenants>[] = [
                 </Button>
               )
             },
-            cell: ({ row }) => <div className="lowercase">{row.getValue("Message From")}</div>,
+            cell: ({ row }) => <div className="lowercase">{row.getValue("MessageFrom")}</div>,
           },
   {
     id: "actions",

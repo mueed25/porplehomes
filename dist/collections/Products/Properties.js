@@ -269,7 +269,7 @@ exports.Properties = {
             name: 'approvedForSale',
             label: 'Product files',
             type: 'select',
-            defaultValue: 'pending',
+            defaultValue: 'approved',
             access: {
                 create: function (_a) {
                     var req = _a.req;

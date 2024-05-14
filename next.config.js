@@ -1,14 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 
-//     images: {
-// <<<<<<< HEAD
-//       domains: [
-//         'localhost'
-//       ] // whatever port your backend runs on
-//     }
-  
-// =======
        
       remotePatterns: [
         {
@@ -17,8 +9,6 @@ const nextConfig = {
           port: '',
         },
       ],
-//       },
-// >>>>>>> 8869c796cab9e4f3bcf870f48e9549a005691cb6
 }
 
 

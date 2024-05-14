@@ -230,7 +230,7 @@ exports.paymentRouter = (0, trpc_1.router)({
                                     Email: Email,
                                     Subject: Subject,
                                     Message: Message,
-                                    Date: String(Date.now()),
+                                    Date: String(new Date().toLocaleString()),
                                 },
                             })];
                     case 2:

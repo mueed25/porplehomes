@@ -341,6 +341,7 @@ const userBalance = Admins?.reduce((total, balance) => {
                               </div>
                               <h1>{(items.createdAt).slice(0,10)}</h1>
                               </div>
+                              
                               <div>
                                 {items.Status === 'Processing'? <h2 className='bg-purple-700 px-2 py-1 text-white'>{items.Status}</h2> : null
                                 }

@@ -148,7 +148,7 @@ exports.TenantMessage = {
         {
             name: 'Date',
             label: 'Date',
-            type: 'date',
+            type: 'text',
             required: true
         },
         {

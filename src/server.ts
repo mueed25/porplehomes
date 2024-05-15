@@ -8,9 +8,17 @@ import nextBuild from 'next/dist/build'
 import path from 'path'
 import { PayloadRequest } from 'payload/types'
 import { parse } from 'url'
+import cors from 'cors'
 
 
 const app = express()
+
+const corsOptions = {
+  origin: 'https://porplehomes.com.com', // Replace with your personal domain
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
+app.use(cors(corsOptions))
 
 const PORT = Number(process.env.PORT) || 3000
 

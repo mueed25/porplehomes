@@ -4,7 +4,7 @@ const nextConfig = {
        
       remotePatterns: [
         {
-          protocol: 'https',
+          protocol: 'http',
           hostname: 'porplehomes.com',
           port: '',
         },
@@ -15,18 +15,3 @@ const nextConfig = {
 
 module.exports = nextConfig
 
-
-
-    // images: {
-       
-    //   // remotePatterns: [
-    //   //   {
-    //   //     protocol: 'https',
-    //   //     hostname: 'nw-porplehomes-production.up.railway.app',
-    //   //     port: '',
-    //   //   },
-    //   // ],
-    //   domains: [
-    //       'localhost:3000'
-    //   ],
-    //   },

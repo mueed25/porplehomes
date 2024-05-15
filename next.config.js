@@ -1,14 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-
-       
-      remotePatterns: [
-        {
-          protocol: 'https',
-          hostname: 'porplehomes.com',
-          port: '',
-        },
-      ],
+images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'porplehomes.com',
+        port: '',
+      },
+    ],
+  },
 }
 
 

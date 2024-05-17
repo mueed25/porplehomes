@@ -10,6 +10,8 @@ import { getPayloadClient } from '@/getPayloadClient'
 import { Property } from '@/payload-types'
 import { cn, formatPrice } from '@/lib/utils'
 import { redirect } from 'next/navigation'
+import { Suspense } from 'react'
+import Loading from './Loading'
 
 
 
@@ -148,6 +150,7 @@ const userBalance = Admins?.reduce((total, balance) => {
   
   return (
     <div className='w-full lg:px-10 py-3 sm:h-screen'> 
+    <Suspense fallback={<Loading />}>
       <div>
         <section className='flex justify-between w-full '>
           <div>
@@ -404,7 +407,8 @@ const userBalance = Admins?.reduce((total, balance) => {
             </div>
           ) : null}
                   </section>
-            </div>
+      </div>
+      </Suspense>
       </div>
   )
 }

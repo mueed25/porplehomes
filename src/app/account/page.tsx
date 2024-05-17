@@ -9,6 +9,8 @@ import { formatPrice } from '@/lib/utils'
 import Link from 'next/link'
 import PaymentStatus from '@/components/PaymentStatus'
 import TenantMessageBoard from '@/components/TenantMessageBoard'
+import { Suspense } from 'react'
+import Loading from './Loading'
 
 
 const page = async () => {
@@ -74,6 +76,8 @@ const page = async () => {
   return (
     <main className=' lg:min-h-screen min-h-screen flex flex-col justify-between w-full '>
 
+
+    <Suspense fallback={<Loading />}>
       <div>
       {user ? <div>
         <div className=' py-8 sm:px-6 sm:py-8 lg:grid lg:grid-cols-2 lg:px-8 px-4'>
@@ -139,9 +143,10 @@ const page = async () => {
       </div> : null}
       </div>
 
-        <div>
+      <div>
       {user? <TenantMessageBoard Email={Email} /> : null}
       </div>
+      </Suspense>
     </main>
   )
 }

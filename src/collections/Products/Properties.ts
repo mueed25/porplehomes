@@ -213,7 +213,6 @@ export const Properties: CollectionConfig = {
         name: 'property_files',
         label: 'Property file(s)',
         type: 'relationship',
-        required: true,
         relationTo: 'property_files',
         hasMany: false,
       },

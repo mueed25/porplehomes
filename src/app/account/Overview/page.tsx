@@ -10,8 +10,8 @@ import { getPayloadClient } from '@/getPayloadClient'
 import { Property } from '@/payload-types'
 import { cn, formatPrice } from '@/lib/utils'
 import { redirect } from 'next/navigation'
-import { Suspense } from 'react'
-import Loading from './loading'
+// import { Suspense } from 'react'
+// import Loading from './loading'
 
 
 

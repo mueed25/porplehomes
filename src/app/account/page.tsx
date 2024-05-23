@@ -9,8 +9,7 @@ import { formatPrice } from '@/lib/utils'
 import Link from 'next/link'
 import PaymentStatus from '@/components/PaymentStatus'
 import TenantMessageBoard from '@/components/TenantMessageBoard'
-import { Suspense } from 'react'
-import Loading from './loading'
+// import { Suspense } from 'react'
 
 
 const page = async () => {

@@ -7,7 +7,7 @@ import { cookies } from 'next/headers'
 import { getPayloadClient } from '@/getPayloadClient'
 import { Tenants, columns } from "@/components/payment1/columns"
 import { DataTable } from "@/components/payment1/data-table"
-import { Tenant, User, Property } from '@/p'
+import { Tenant, User, Property } from '@/payload-types'
 
 async function getData(): Promise<Tenants[]> {
   const payload = await getPayloadClient()

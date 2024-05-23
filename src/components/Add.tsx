@@ -1,5 +1,5 @@
 'use client'
-import { Property, User } from "@/p"
+import { Property, User } from "@/payload-types"
 import { Button } from "./ui/button"
 import { usePaystackPayment } from "react-paystack"
 import { trpc } from "@/trpc/client"

@@ -2,7 +2,7 @@
 'use client'
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { User } from '@/payload-types';
+import { User } from '@/p';
 import { trpc } from '@/trpc/client';
 import { Label } from '@radix-ui/react-label';
 import Link from 'next/link';

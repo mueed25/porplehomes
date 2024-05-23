@@ -2,15 +2,9 @@
 const nextConfig = {
 // <<<<<<< HEAD
 
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'www.porplehomes.com',
-        port: '',
-      },
-    ],
-  },
+images: {
+  domains: ['localhost'],
+},
  
     
 // =======

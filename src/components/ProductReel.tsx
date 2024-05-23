@@ -1,7 +1,7 @@
 'use client'
 
 import { TQueryValidator } from '@/lib/validators/query-validator'
-import { Property } from '@/payload-types'
+import { Property } from '@/p'
 import { trpc } from '@/trpc/client'
 import Link from 'next/link'
 import ProductListing from './ProductListing'

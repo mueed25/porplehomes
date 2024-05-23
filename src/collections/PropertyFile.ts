@@ -1,5 +1,5 @@
 import { getPayloadClient } from "@/getPayloadClient";
-import { User } from "@/payload-types";
+import { PropertyFile, User } from "@/payload-types";
 import payload from "payload";
 import { BeforeChangeHook } from "payload/dist/collections/config/types";
 import { Access, CollectionConfig } from "payload/types";
@@ -38,21 +38,30 @@ const yourOwnAndPurchased : Access = async ({req}) => {
         }
     }) 
 
-    const purChasedProductFiles = Orders.map((order) => {
-        return order.products.map((product) => {
-            if (typeof product === 'string') return req.payload.logger.error('search error')
+    // const purChasedProductFiles = Orders.map((order) => {
+    //     return order.products.map((product) => {
+    //         if (typeof product === 'string') return req.payload.logger.error('search error')
 
-            return typeof product.property_files === 'string' ? product.property_files : product.property_files.id
-        })
-    })
-    .filter(Boolean)
-    .flat()
+    //         return typeof product.property_files === 'string' ? product.property_files : product.property_files.id
+    //     })
+    // })
+    // .filter(Boolean)
+    // .flat()
+
+    // const purChasedProductFiles = Orders?  Orders.map( order => {
+    //     order.products.map( product => {
+    //         if (typeof product === 'string') return req.payload.logger.error('search error')
+
+    //         return typeof product.property_files ==='string'? product.property_files : (product.property_files as PropertyFile).id? (product.property_files as PropertyFile).id : ''
+    //     })
+    // }).flat() : []
+    // console.log(purChasedProductFiles)
 
     return {
         id: {
             in: [
                 ...ownProductFiles,
-                ...purChasedProductFiles
+                // ...purChasedProductFiles
             ]
         }
     }

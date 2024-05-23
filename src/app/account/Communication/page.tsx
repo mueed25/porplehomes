@@ -5,7 +5,7 @@ import { cookies } from 'next/headers'
 import { getPayloadClient } from '@/getPayloadClient'
 import { Tenants, columns } from "@/components/payment4/columns"
 import { DataTable } from "@/components/payment4/data-table"
-import { Tenant, User, Property } from '@/payload-types'
+import { Tenant, User, Property } from '@/p'
 import { MessageCircleIcon } from 'lucide-react'
 
 async function getData(): Promise<Tenants[]> {

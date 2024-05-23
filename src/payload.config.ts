@@ -14,6 +14,7 @@ import { Media } from "./collections/Media";
 import { Tenant } from "./collections/Tenant1";
 import { Announcement } from "./collections/Announcement";
 import { TenantMessage } from "./collections/TenantMessage";
+import { Subscription } from "./collections/Subscription";
 
 dotenv.config({
     path: path.resolve(__dirname, '../.env')
@@ -22,7 +23,7 @@ dotenv.config({
 
 export default buildConfig({
     serverURL: process.env.NEXT_PUBLIC_SERVER_URL || '',
-    collections: [Users,Properties,Media,Orders,PropertyFiles,Workers,Tenants, Tenant, Announcement, TenantMessage,],
+    collections: [Users,Properties,Media,Orders,PropertyFiles,Workers,Tenants, Tenant, Announcement, TenantMessage,Subscription],
     routes: {
         admin:'/sell'
     },

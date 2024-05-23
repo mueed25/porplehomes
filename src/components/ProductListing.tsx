@@ -1,6 +1,6 @@
 'use client'
 
-import { Property } from '@/payload-types'
+import { Property } from '@/p'
 import { useEffect, useState } from 'react'
 import { Skeleton } from '../components/ui/skeleton'
 import Link from 'next/link'

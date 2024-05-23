@@ -3,14 +3,14 @@ import Image from 'next/image'
 import { cookies } from 'next/headers'
 import { getPayloadClient } from '@/getPayloadClient'
 import { notFound, redirect } from 'next/navigation'
-import { Property, PropertyFile, User } from '@/payload-types'
+import { Order, Property, PropertyFile, User } from '@/p'
 import { PRODUCT_CATEGORIES } from '@/config'
 import { formatPrice } from '@/lib/utils'
 import Link from 'next/link'
 import PaymentStatus from '@/components/PaymentStatus'
 import TenantMessageBoard from '@/components/TenantMessageBoard'
 import { Suspense } from 'react'
-import Loading from './Loading'
+import Loading from './loading'
 
 
 const page = async () => {
@@ -72,12 +72,23 @@ const page = async () => {
   }, 0)
 
   const Email = user?.email
+  const {docs: Orders} = await payload.find({
+    collection: 'orders',
+    depth: 2,
+    where: {
+        user: {
+            equals: user.id
+        }
+    }
+})
+
+console.log(Orders)
 
   return (
     <main className=' lg:min-h-screen min-h-screen flex flex-col justify-between w-full '>
 
 
-    <Suspense fallback={<Loading />}>
+    {/* <Suspense fallback={<Loading />}> */}
       <div>
       {user ? <div>
         <div className=' py-8 sm:px-6 sm:py-8 lg:grid lg:grid-cols-2 lg:px-8 px-4'>
@@ -146,7 +157,7 @@ const page = async () => {
       <div>
       {user? <TenantMessageBoard Email={Email} /> : null}
       </div>
-      </Suspense>
+      {/* </Suspense> */}
     </main>
   )
 }

@@ -6,7 +6,7 @@ import { Button, buttonVariants } from '@/components/ui/button'
 import { PRODUCT_CATEGORIES } from '@/config'
 import { getPayloadClient } from '@/getPayloadClient'
 import { formatPrice } from '@/lib/utils'
-import { Check, ComputerIcon, Home, Shield } from 'lucide-react'
+import { Check, ComputerIcon, Home, Shield, DoorOpen, Warehouse } from 'lucide-react'
 import Link from 'next/link'
 import { notFound, useRouter } from 'next/navigation'
 import { getServerSideUser } from '@/lib/payload.utils'
@@ -115,31 +115,40 @@ const Page = async ({ params }: PageProps) => {
                 </p>
               </div>
 
-              <div className='mt-6 flex items-center'>
+              <div className='mt-4 flex items-center '>
+                <DoorOpen />
+                <p className='ml-2 text-sm font-medium '>
+                  {product.Bedrooms}-Bedrooms
+                </p> 
+              </div>
+              <div className='mb-2 mt-1  flex items-center' >
+              <Warehouse />
+              <h2 className='text-sm font-medium ml-2'>
+                {product.Company_name}.
+              </h2>
+              </div>
+              <div className='flex flex-col'>
+              
+              <div className='mt-2 flex items-center'>
+                <Check
+                  aria-hidden='true'
+                  className='h-5 w-5 flex-shrink-0 text-green-500'
+                />
+                <p className='ml-2 text-sm text-muted-foreground'>
+                  Duration of {product.Days} days. 
+                </p> 
+              </div>
+               
+                <div className='mt-2 flex items-center'>
                 <Check
                   aria-hidden='true'
                   className='h-5 w-5 flex-shrink-0 text-green-500'
                 />
                 <p className='ml-2 text-sm text-muted-foreground'>
                   Eligible for instant tour and reservation 
-                </p>
-              </div>
-              <div className='py-4 flex flex-col'>
-              <div className='flex'>
-                <Home />
-              <p className='ml-2 text-sm text-muted-foreground'>
-                  {product.Bedrooms} bedrooms
                 </p> 
               </div>
-              <div className='py-4 flex' >
-                <ComputerIcon />
-              <p className='ml-2 text-sm text-muted-foreground'>
-                  {product.Company_name}  
-                </p> 
-              </div>
-              <p className='ml-2 text-sm text-muted-foreground'>
-                  Duration of {product.Days} days. 
-                </p> 
+                
               </div>
             </section>
           </div>

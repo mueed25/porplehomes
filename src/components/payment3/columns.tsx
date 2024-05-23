@@ -13,7 +13,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Tenant, User, Property } from '@/payload-types'
+import { Tenant, User, Property } from '@/p'
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.

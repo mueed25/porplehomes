@@ -29,28 +29,28 @@ const Announce = () => {
     <div className='w-full '>
       <div className='pb-2'>
         <p className='text-muted-foreground'>Hi There,</p>
-        <h2 className=''>Announcement</h2>
+        <p className=''>Announcement</p>
       </div>
 
      {!pathname.includes('/account/Communication/Compose')?  <div className=" mt-2 pr-2 flex justify-between">
 
      <div className="flex space-x-2 ">
-        <button
-          className={`px-4 py-1 rounded-md ${
+        <Button
+          className={` ${
             pathname.includes('/account/Communication') ? 'bg-porple text-white' : 'bg-gray-300'
           }`}
           onClick={handleSentClick}
         >
           Sent
-        </button>
-        <button
-          className={`px-4 py-1 rounded-md  ${
+        </Button>
+        <Button
+          className={`  ${
             pathname.includes('/account/Communication/Inbox') ? 'bg-porple text-white' : 'bg-gray-300'
           }`}
           onClick={handleInboxClick}
         >
           Inbox
-        </button>
+        </Button>
       </div>
       <div className=' '>
       <Button onClick={handleClick}>Compose</Button>

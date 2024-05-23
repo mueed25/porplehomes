@@ -18,6 +18,7 @@ export interface Config {
     Tenant1: Tenant1;
     Announce: Announce;
     TenantM: TenantM;
+    subscription: Subscription;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -58,7 +59,7 @@ export interface Property {
   state: string;
   Bedrooms: number;
   Days: string;
-  property_files: string | PropertyFile;
+  property_files?: (string | null) | PropertyFile;
   approvedForSale?: ('pending' | 'approved' | 'denied') | null;
   images: {
     images: string | Media;
@@ -176,6 +177,13 @@ export interface TenantM {
   Subject: string;
   Date: string;
   Message: string;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Subscription {
+  id: string;
+  user?: (string | null) | User;
+  membership: 'standard' | 'premium';
   updatedAt: string;
   createdAt: string;
 }

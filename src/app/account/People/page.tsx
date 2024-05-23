@@ -9,6 +9,7 @@ import { getPayloadClient } from '@/getPayloadClient'
 import { Tenants, columns } from "@/components/payment2/columns"
 import { DataTable } from "@/components/payment2/data-table"
 import { Tenant, User, Property } from '@/payload-types'
+import AddButton from '@/components/AddButton'
 
 async function getData(): Promise<Tenants[]> {
   const payload = await getPayloadClient()
@@ -136,6 +137,9 @@ const data1 = await getUserData()
         {user?.role !== 'admin' ? (
           <div className='pb-8'>
           <DataTable columns={columns} data={data1} />
+          <div className='pb-8'>
+          <AddButton />
+          </div>
           </div>
         ) : null}
         {user?.role === 'admin' ? (
@@ -143,7 +147,7 @@ const data1 = await getUserData()
           <DataTable columns={columns} data={data} />
           <div className='pb-8'>
           <Buttons />
-        </div>
+          </div>
         </div>
           ) : null}
     </div>

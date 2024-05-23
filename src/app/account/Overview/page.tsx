@@ -11,7 +11,7 @@ import { Property } from '@/payload-types'
 import { cn, formatPrice } from '@/lib/utils'
 import { redirect } from 'next/navigation'
 import { Suspense } from 'react'
-import Loading from './Loading'
+import Loading from './loading'
 
 
 
@@ -150,7 +150,6 @@ const userBalance = Admins?.reduce((total, balance) => {
   
   return (
     <div className='w-full lg:px-10 py-3 sm:h-screen'> 
-    <Suspense fallback={<Loading />}>
       <div>
         <section className='flex justify-between w-full '>
           <div>
@@ -177,7 +176,6 @@ const userBalance = Admins?.reduce((total, balance) => {
                 <h2 className='px-4 py-4 font-semibold'>Profit and Available Balance</h2>
                 <Separator />
                 <div className='px-4'>
-                  
                   <div className='flex h-full pt-8 py-4 px-4 items-center justify-between'>
                   <div className='flex-col h-40 w-40 rounded-full border-8 border-[#7623BA] flex justify-center items-center'>
                         <h3 className='font-semibold'>Balance</h3>
@@ -331,33 +329,30 @@ const userBalance = Admins?.reduce((total, balance) => {
                   {allUserOrders.slice(0,4).map(items => (
                         <div key={items.id}>
                           {(items.products as Property[]).map(item => (
-                            <div key={items.id} className='flex px-4 py-2'>
-                              <div className='flex justify-center items-center px-2 mx-2  bg-purple-300'>
-                                <MessageCircleIcon color='#7623BA'/>
+                            <div key={items.id}>
+                            {(items.products as Property[]).map(item => (
+                              <div key={item.id} className='flex px-4 py-2'>
+                                <div className='flex justify-center items-center px-2 mx-2  bg-purple-300 rounded-md'>
+                                  <Landmark color='#7623BA'/>
+                                </div>
+                                <div className='flex justify-between w-full'>
+                                <div className='flex flex-col'>
+                                  <h2 className='font-bold'>{item.unit_building}</h2>
+                                  <p>{item.Unit_name}</p>
+                                </div>
+                                <div className='max-sm:hidden'>
+                                  {items.Status === 'Processing'? <h2 className='bg-purple-600 py-1 px-2 text-white rounded-md'>{items.Status}</h2> : null}
+                                  {items.Status === 'Paid'? <h2 className='bg-red-600 py-1 px-2 text-white rounded-md'>{items.Status}</h2> : null}
+                                  {items.Status === 'Failed'? <h2 className='bg-red-600 py-1 px-2 text-white rounded-md'>{items.Status}</h2> : null}
+  
+                                </div>
+                                <div>
+                                  <h2 className='font-bold'>NGN {item.price}</h2>
+                                </div>
+                                </div>
                               </div>
-                              <div className='flex justify-between w-full'>
-                              <div>
-                                
-                              <div className='flex '>
-                                <h2 className='pr-2'>{item.unit_building}</h2>
-                                <p>{item.Unit_name}</p>
-                              </div>
-                              <h1>{(items.createdAt).slice(0,10)}</h1>
-                              </div>
-                              
-                              <div>
-                                {items.Status === 'Processing'? <h2 className='bg-purple-700 px-2 py-1 text-white'>{items.Status}</h2> : null
-                                }
-                                {items.Status === 'Paid'? <h2 className='bg-red-400 px-2 py-1 text-white'>{items.Status}</h2> : null
-                                }
-                                {items.Status === 'Failed'? <h2 className='bg-red-400 px-2 py-1 text-white'>{items.Status}</h2> : null
-                                }
-                              </div>
-                              <div>
-                                <h2>NGN {item.price}</h2>
-                              </div>
-                              </div>
-                            </div>
+                            ))}
+                          </div>
                           ))}
                         </div>
                   ))}
@@ -375,23 +370,24 @@ const userBalance = Admins?.reduce((total, balance) => {
                   {allUserproduct.slice(0,4).map(items => (
                         <div key={items.id}>
                           {(items.products as Property[]).map(item => (
-                            <div key={items.id} className='flex px-4 py-2'>
-                              <div className='flex justify-center items-center px-2 mx-2  bg-purple-300'>
-                                <MessageCircleIcon color='#7623BA'/>
-                              </div>
-                              <div className='flex justify-between w-full'>
+                            <div key={items.id}>
+                            {(items.products as Property[]).map(item => (
+                              <div key={item.id} className='flex px-4 py-2'>
+                                <div className='flex justify-center items-center px-2 mx-2  bg-purple-300 rounded-md'>
+                                  <ClipboardType color='#7623BA'/>
+                                </div>
+                                <div className='flex flex-col justify-between w-full'>
                                 <div>
-                              <div>
-                                <h2>{items.Full_name}</h2>
+                                  <h2 className='font-bold'>{items.Full_name}</h2>
+                                </div>
+                                <div className='flex '>
+                                  <h2>{item.unit_building} ,</h2>
+                                  <p>{item.Unit_name}</p>
+                                </div>
+                                </div>
                               </div>
-                              <div className='flex'>
-                                <h2 className='pr-2'>{item.unit_building}</h2>
-                                <p>{item.Unit_name}</p>
-                              </div>
-                              </div>
-                              <div><h1>{(items.createdAt).slice(0,10)}</h1></div>
-                              </div>
-                            </div>
+                            ))}
+                          </div>
                           ))}
                         </div>
                   ))}
@@ -408,7 +404,6 @@ const userBalance = Admins?.reduce((total, balance) => {
           ) : null}
                   </section>
       </div>
-      </Suspense>
       </div>
   )
 }

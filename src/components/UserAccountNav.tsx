@@ -1,6 +1,6 @@
 'use client'
 
-import { User } from '@/p'
+import { User } from '@/payload-types'
 import { Button } from './ui/button'
 import {
   DropdownMenu,

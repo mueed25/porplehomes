@@ -6,7 +6,7 @@ import { DataTable } from "@/components/payment3/data-table"
 import { getServerSideUser } from '@/lib/payload.utils'
 import { cookies } from 'next/headers'
 import { getPayloadClient } from '@/getPayloadClient'
-import { Tenant, User, Property } from '@/p'
+import { Tenant, User, Property } from '@/payload-types'
 
 async function getData(): Promise<Tenants[]> {
   const payload = await getPayloadClient()

@@ -4,7 +4,7 @@ import { useFlutterwave, closePaymentModal } from 'flutterwave-react-v3';
 import { Button } from './ui/button';
 import { trpc } from '@/trpc/client';
 import  {useRouter} from 'next/navigation'
-import { User } from '@/p';
+import { User } from '@/payload-types';
 
 const AddToProfile =  ({
   productid, 

@@ -45,7 +45,7 @@ const AddToProfile =  ({
     },
   };
 
-  const handleFlutterPayment = useFlutterwave(config);
+  const handleFlutterPayment =  useFlutterwave(config);
 
   return (
     <div className="">

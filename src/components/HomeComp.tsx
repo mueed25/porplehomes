@@ -1,5 +1,6 @@
 'use client'
 import MaxWidthWrapper from '@/components/MaxWidthWrapper'
+import MobileCarousel from '@/components/MobileCarousel'
 import ProductReel from '../components/ProductReel';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
@@ -11,6 +12,7 @@ import { ArrowDown, ArrowRightCircleIcon, ArrowLeft, PhoneIcon } from 'lucide-re
 import Link from 'next/link';
 import { zodResolver } from '@hookform/resolvers/zod'
 import { TFilterQueryValidator, FilterQueryValidator } from '@/lib/validators/filter-query-validator';
+import Carousel from './Carousel';
 
 
 const HomeComp = () => {
@@ -76,7 +78,7 @@ const HomeComp = () => {
     <div>
           {searching? (
       <div className=' '>
-      <section className='flex relative h-screen w-full  justify-center items-center'>
+      {/* <section className='flex relative h-screen w-full  justify-center items-center'>
         <MaxWidthWrapper>
 
       <div className='flex justify-center items-center  py-8 pt-8'>
@@ -104,9 +106,9 @@ const HomeComp = () => {
           
       </div>
       </MaxWidthWrapper>
-      </section>
+      </section> */}
 
-      <section className='pt-8'>
+      <section className='pt-24'>
          <MaxWidthWrapper className=''>
           <button className='text-[#7623BA]' onClick={
             () => (
@@ -127,18 +129,16 @@ const HomeComp = () => {
       </div>
      ) : (
       <div>
-      <section className='w-full h-screen flex justify-center items-center  px-10 relative '>
+      {/* <section className='w-full h-screen flex justify-center items-center  px-10 relative '>
       <MaxWidthWrapper className='text-center borde '>
       <div className='text-white'>
       <h1 className='lg:text-[4rem] text-[2.5rem] font-semibold' >Find Your Perfect Home</h1>
       <h3 className='lg:text-[1.5rem] text-[1.2rem] pt-3 font-light'>Take control and find your perfect home. We buy and sell properties across the country . Our properties are available to buy, rent and lease. Take a tour of our properties</h3>
       </div>
-
-     
       </MaxWidthWrapper>
-      </section>
+      </section> */}
 
-      <section className='flex relative'>
+      {/* <section className='flex relative'>
         <MaxWidthWrapper>
       <div className='flex justify-center items-center  py-8 pt-8'>
         <form  onSubmit={handleSubmit(onSubmit)} className='grid lg:grid-cols-5 grid-cols- lg:gap-4 gap-4 py-8 max-lg:w-4/5 px-4 shadow-lg rounded-md lg:absolute lg:-top-full bg-white'>
@@ -178,9 +178,33 @@ const HomeComp = () => {
           
       </div>
       </MaxWidthWrapper>
-      </section>
+      </section> */}
 
-      <section className=' w-full  pb-8'>
+      <section className='sm:pt-44 max-sm:hidden justify-center px-4'>
+        {/* <MaxWidthWrapper> */}
+          <Carousel />
+          {/* </MaxWidthWrapper> */}
+        </section>
+
+        {/* <section className='pt-44 sm:hidden border flex justify-ceneter'>
+          <MobileCarousel />
+        </section> */}
+
+      <section className='max-sm:pt-28'>
+         <MaxWidthWrapper className=''>
+          <div className=''>
+           <ProductReel
+           query={{ sort: 'desc', limit: 20 ,}}
+           href=''
+           title=''
+         />
+          </div>
+        </MaxWidthWrapper> 
+        </section>
+
+        
+
+      {/* <section className=' w-full  pb-8'>
         <MaxWidthWrapper >
           <div className='py-16 max-lg:px-6 grid lg:grid-cols-3  gid-cols-1 gap-8'>
           {category.map( (list, index) => (
@@ -200,6 +224,30 @@ const HomeComp = () => {
             </Link>
           ))}
           </div>
+        </MaxWidthWrapper>
+      </section> */}
+
+      <section className='py-16'>
+        <MaxWidthWrapper className=''>
+        <div className='flex flex-col justify-center items-center py-16 px-2 bg-yellow-100'>
+                <h1 className='lg:text-xl text-lg font-semibold text-center'>Book an instant property tour</h1>
+                <p className='text-muted-foreground md:text-base text-center'>Enter your mobiles number to recieve an instant call from us</p>
+                
+        <form className="max-w-sm mx-auto">
+            <div className="relative flex pl-2 rounded-xl  border shadow-md bg-white mt-4">
+                    <div className=' flex justify-center items-center'>
+                    <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 19 18">
+                        <path d="M18 13.446a3.02 3.02 0 0 0-.946-1.985l-1.4-1.4a3.054 3.054 0 0 0-4.218 0l-.7.7a.983.983 0 0 1-1.39 0l-2.1-2.1a.983.983 0 0 1 0-1.389l.7-.7a2.98 2.98 0 0 0 0-4.217l-1.4-1.4a2.824 2.824 0 0 0-4.218 0c-3.619 3.619-3 8.229 1.752 12.979C6.785 16.639 9.45 18 11.912 18a7.175 7.175 0 0 0 5.139-2.325A2.9 2.9 0 0 0 18 13.446Z"/>
+                    </svg>
+                    </div>
+                    <div className='grid grid-cols-2 pl-2'>
+                <Input type="text"  aria-describedby="helper-text-explanation" className="bg-gray-50 border-0 text-muted-foreground text-sm rounded-lg  block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="08100190109" />
+                <Button className='rounded-xl'>Send</Button>
+                </div>
+            </div>
+        </form>
+
+        </div>
         </MaxWidthWrapper>
       </section>
 
@@ -232,42 +280,7 @@ const HomeComp = () => {
           </div>
         </MaxWidthWrapper>
       </section>
-
-      <section className='py-16'>
-        <MaxWidthWrapper className=''>
-        <div className='flex flex-col justify-center items-center py-16 px-2 bg-yellow-100'>
-                <h1 className='lg:text-xl text-lg font-semibold text-center'>Book an instant property tour</h1>
-                <p className='text-muted-foreground md:text-base text-center'>Enter your mobiles number to recieve an instant call from us</p>
-                
-        <form className="max-w-sm mx-auto">
-            <div className="relative flex pl-2 rounded-xl  border shadow-md bg-white mt-4">
-                    <div className=' flex justify-center items-center'>
-                    <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 19 18">
-                        <path d="M18 13.446a3.02 3.02 0 0 0-.946-1.985l-1.4-1.4a3.054 3.054 0 0 0-4.218 0l-.7.7a.983.983 0 0 1-1.39 0l-2.1-2.1a.983.983 0 0 1 0-1.389l.7-.7a2.98 2.98 0 0 0 0-4.217l-1.4-1.4a2.824 2.824 0 0 0-4.218 0c-3.619 3.619-3 8.229 1.752 12.979C6.785 16.639 9.45 18 11.912 18a7.175 7.175 0 0 0 5.139-2.325A2.9 2.9 0 0 0 18 13.446Z"/>
-                    </svg>
-                    </div>
-                    <div className='grid grid-cols-2 pl-2'>
-                <Input type="text"  aria-describedby="helper-text-explanation" className="bg-gray-50 border-0 text-muted-foreground text-sm rounded-lg  block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="08100190109" />
-                <Button className='rounded-xl'>Send</Button>
-                </div>
-            </div>
-        </form>
-
-        </div>
-        </MaxWidthWrapper>
-      </section>
-
-        <section className='pt-8'>
-         <MaxWidthWrapper className=''>
-          <div className=''>
-           <ProductReel 
-           query={{ sort: 'desc', limit: 20 ,}}
-           href='/products?sort=recent'
-           title='View from our properties'
-         />
-          </div>
-        </MaxWidthWrapper> 
-        </section>
+        
         </div>
 )}
     </div>

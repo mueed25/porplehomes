@@ -40,7 +40,7 @@ const MobileNav = () => {
         type='button'
         onClick={() => setIsOpen(true)}
         className='lg:hidden relative -m-2 inline-flex items-center justify-center rounded-md p-2 text-white'>
-        <Menu className='h-6 w-6 ' aria-hidden='true' />
+        <Menu className='h-6 w-6 ' aria-hidden='true' color='black'/>
       </button>
     )
 

@@ -6,7 +6,7 @@ const ShowNavbar = ({children} : {
     children: React.ReactNode
   }) => {
 
-    const noNav = ['/account' ,'/account/Communication/Inbox', '/account/Overview', '/account/People', '/account/People/NewTenant', '/account/People/Subscription','/account/Communication/Compose', '/account/Residentials', '/account/Accounting', '/', '/account/Communication'] 
+    const noNav = ['/account' ,'/account/Communication/Inbox', '/account/Overview', '/account/People' , '/account/Qrcode', '/account/People/NewTenant', '/account/People/Subscription','/account/Communication/Compose', '/account/Residentials', '/account/Accounting', '/', '/account/Communication'] 
     const pathname = usePathname()
 
   return (

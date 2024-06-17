@@ -60,6 +60,19 @@ export const appRouter = router({
         nextPage: hasNextPage ? nextPage : null,
       }
     }),
+    
+    getAdverts: publicProcedure
+    .query(async () => {
+
+        const payload = await getPayloadClient()
+
+        const {docs: items } = await payload.find({
+            collection: 'advert',
+            depth: 2
+        }) 
+
+        return { items }
+    }),
 })
 
 export type AppRouter = typeof appRouter

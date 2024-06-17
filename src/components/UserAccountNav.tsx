@@ -11,9 +11,26 @@ import {
 } from './ui/dropdown-menu'
 import Link from 'next/link'
 import { useAuth } from '@/hooks/use-auth'
+import { Menu} from 'lucide-react'
+import { notFound, redirect } from 'next/navigation'
 
-const UserAccountNav = ({ user }: { user: User }) => {
+
+
+const UserAccountNav = ({ user }: { user: string  }) => {
   const { signOut } = useAuth()
+
+  const signIn = () => {
+    return redirect(
+      `/sign-in?origin=/`
+    )
+  }
+
+  const signUp = () => {
+    return redirect(
+      `/sign-up?origin=/`
+    )
+  }
+
 
   return (
     <DropdownMenu>
@@ -24,7 +41,7 @@ const UserAccountNav = ({ user }: { user: User }) => {
           variant='ghost'
           size='sm'
           className='relative'>
-          My account
+          <Menu className=''/>
         </Button>
       </DropdownMenuTrigger>
 
@@ -34,7 +51,7 @@ const UserAccountNav = ({ user }: { user: User }) => {
         <div className='flex items-center justify-start gap-2 p-2'>
           <div className='flex flex-col space-y-0.5 leading-none'>
             <p className='font-medium text-sm text-black'>
-              {user.email}
+              {/* {user.email} */} mueedmuhammad605@gmail.com
             </p>
           </div>
         </div>
@@ -49,11 +66,28 @@ const UserAccountNav = ({ user }: { user: User }) => {
           <Link href='/sell'>Seller Dashboard</Link>
         </DropdownMenuItem>
 
+      {user? (
+        <div>
+        <DropdownMenuItem
+        onClick={signIn}
+        className='cursor-pointer'>
+        Sign In
+      </DropdownMenuItem>
+
+        <DropdownMenuItem
+        onClick={signUp}
+        className='cursor-pointer'>
+        Create Account
+      </DropdownMenuItem>
+      </div>
+      ): (
         <DropdownMenuItem
           onClick={signOut}
           className='cursor-pointer'>
           Log out
         </DropdownMenuItem>
+      )
+      }
       </DropdownMenuContent>
     </DropdownMenu>
   )

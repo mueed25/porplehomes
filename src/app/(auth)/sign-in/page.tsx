@@ -185,7 +185,7 @@ const Page = () => {
                 onClick={continueAsSeller}
                 variant='secondary'
                 disabled={isLoading}>
-                Continue as seller
+                Continue as Vendor
               </Button>
             )}
           </div>

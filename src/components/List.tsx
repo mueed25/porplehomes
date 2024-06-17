@@ -1,4 +1,4 @@
-import { Search, Settings, BadgeHelp, LogOut, ClipboardListIcon, FolderArchive, PersonStandingIcon, HomeIcon, LayoutDashboardIcon } from "lucide-react"
+import { Search, Settings, BadgeHelp, LogOut, ClipboardListIcon, FolderArchive, PersonStandingIcon, HomeIcon, LayoutDashboardIcon, QrCode } from "lucide-react"
 
 export const AdminList1 = [{
     name: 'Overview',
@@ -12,10 +12,13 @@ export const AdminList1 = [{
   },,{
     name: 'Communication',
     icon: <ClipboardListIcon color='#7623BA'/>
-  },]
+  },{
+    name: 'Qrcode',
+    icon: <QrCode color='#7623BA'/>
+  }]
 
   export const AdminList = [{
-  name: 'Seller Dashboard',
+  name: 'Vendor Dashboard',
   icon: <LayoutDashboardIcon />
 },{
     name: 'Overview',
@@ -29,14 +32,14 @@ export const AdminList1 = [{
   },,{
     name: 'Communication',
     icon: <ClipboardListIcon />
-  },]
+  },{
+    name: 'Qrcode',
+    icon: <QrCode />
+  }]
 
   
 
   export const SettingList = [{
-    name: 'Help',
-    icon: <BadgeHelp />
-  },{
     name: 'Setting',
     icon: <Settings />
   },,{

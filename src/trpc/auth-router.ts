@@ -35,7 +35,6 @@ export const authRouter = router({
 
         return {success: true, sentToEmail: email}
     }),
-
     verifyEmail: publicProcedure
     .input(z.object({token: z.string()}))
     .query(async ({ input }) => {

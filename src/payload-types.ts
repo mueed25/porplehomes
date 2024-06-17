@@ -19,6 +19,9 @@ export interface Config {
     Announce: Announce;
     TenantM: TenantM;
     subscription: Subscription;
+    agentmedia: Agentmedia;
+    advertisement: Advertisement;
+    advert: Advert;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -46,6 +49,10 @@ export interface Property {
   id: string;
   user?: (string | null) | User;
   Company_name: string;
+  agentimage: {
+    agentimages: string | Agentmedia;
+    id?: string | null;
+  }[];
   Manager_full_name: string;
   Comapany_Contact_number: string;
   name: string;
@@ -56,7 +63,44 @@ export interface Property {
   Payment_type: 'Rent' | 'Buy';
   price: number;
   Property_type: 'Housings' | 'Real Estate';
-  state: string;
+  State:
+    | 'Abia'
+    | 'Adamawa'
+    | 'Akwa Ibom'
+    | 'Anambra'
+    | 'Bauchi'
+    | 'Bayelsa'
+    | 'Benue'
+    | 'Borno'
+    | 'Cross River'
+    | 'Delta'
+    | 'Ebonyi'
+    | 'Edo'
+    | 'Ekiti'
+    | 'Enugu'
+    | 'Gombe'
+    | 'Imo'
+    | 'Jigawa'
+    | 'Kaduna'
+    | 'Kano'
+    | 'Katsina'
+    | 'Kebbi'
+    | 'Kogi'
+    | 'Kwara'
+    | 'Lagos'
+    | 'Nasarawa'
+    | 'Niger'
+    | 'Ogun'
+    | 'Ondo'
+    | 'Osun'
+    | 'Oyo'
+    | 'Plateau'
+    | 'Rivers'
+    | 'Sokoto'
+    | 'Taraba'
+    | 'Yobe'
+    | 'Zamfara'
+    | 'Federal Capital Territory (FCT)';
   Bedrooms: number;
   Days: string;
   property_files?: (string | null) | PropertyFile;
@@ -67,6 +111,44 @@ export interface Property {
   }[];
   updatedAt: string;
   createdAt: string;
+}
+export interface Agentmedia {
+  id: string;
+  user?: (string | null) | User;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    card?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    tablet?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
 }
 export interface PropertyFile {
   id: string;
@@ -184,6 +266,55 @@ export interface Subscription {
   id: string;
   user?: (string | null) | User;
   membership: 'standard' | 'premium';
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Advertisement {
+  id: string;
+  user?: (string | null) | User;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    card?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    tablet?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
+}
+export interface Advert {
+  id: string;
+  user?: (string | null) | User;
+  Description: string;
+  images: {
+    images: string | Advertisement;
+    id?: string | null;
+  }[];
   updatedAt: string;
   createdAt: string;
 }

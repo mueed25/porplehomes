@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
     <div>
-      <section className=' -z-10 absolute w-full  '>
+      {/* <section className=' -z-10 absolute w-full  '>
           <div className=" h-screen w-full relative">
           <div className=" h-full w-full bg-blac "></div>
           <Image
@@ -16,7 +16,7 @@ export default function Home() {
             src='/homepage.png' 
             fill />
           </div>
-      </section>
+      </section> */}
      
      <section className='w-full'>
       <HomeNav />

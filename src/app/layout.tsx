@@ -9,6 +9,9 @@ import { Toaster } from 'sonner'
 import ShowNavbar from '@/components/ShowNavbar'
 import Footer from '@/components/Footer'
 import ShowFooter from '@/components/ShowFooter'
+// import '@/components/css/base.css'
+// import '@/components/css/sandbox.css'
+// import '@/components/css/embla.css'
 
 const inter = Inter({ subsets: ['latin'] })
 

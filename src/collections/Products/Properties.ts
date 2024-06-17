@@ -16,6 +16,47 @@ const addUser: BeforeChangeHook<Property> = async ({
     return { ...data, user: user.id }
   }
 
+  const states = [
+    "Abia",
+    "Adamawa",
+    "Akwa Ibom",
+    "Anambra",
+    "Bauchi",
+    "Bayelsa",
+    "Benue",
+    "Borno",
+    "Cross River",
+    "Delta",
+    "Ebonyi",
+    "Edo",
+    "Ekiti",
+    "Enugu",
+    "Gombe",
+    "Imo",
+    "Jigawa",
+    "Kaduna",
+    "Kano",
+    "Katsina",
+    "Kebbi",
+    "Kogi",
+    "Kwara",
+    "Lagos",
+    "Nasarawa",
+    "Niger",
+    "Ogun",
+    "Ondo",
+    "Osun",
+    "Oyo",
+    "Plateau",
+    "Rivers",
+    "Sokoto",
+    "Taraba",
+    "Yobe",
+    "Zamfara",
+    "Federal Capital Territory (FCT)"
+  ];
+  
+
   const syncUser: AfterChangeHook<Property> = async ({
     req,
     doc,
@@ -110,16 +151,42 @@ export const Properties: CollectionConfig = {
         required: true  
     },
     {
-        name: 'Manager_full_name',
-        label: 'Manager Full name',
+      name: 'agentimage',
+      type: 'array',
+      label: 'Agent images',
+      minRows: 1,
+      maxRows: 2,
+      required: true,
+      labels: {
+          singular: 'Image',
+          plural: 'images'
+      },
+      fields: [
+          {
+              name: 'agentimages',
+              type: 'upload',
+              relationTo: 'agentmedia',
+              required: true
+          }
+      ]
+    },
+    {
+        name: 'Agent_full_name',
+        label: 'Agent Full name',
         type: 'text',
         required: true  
     },
     {
-        name: 'Comapany_Contact_number',
-        label: 'Comapany Conatact number',
+        name: 'AgentContact_number',
+        label: 'Agent Conatact number',
         type: 'text',
         required: true  
+    },
+    {
+      name: 'Agent_Gmail',
+      label: 'Agent Gmail',
+      type: 'text',
+      required: true 
     },
     {
         name: 'name',
@@ -190,18 +257,17 @@ export const Properties: CollectionConfig = {
             },
         ]
     },
-    
     {
-        name: 'state',
-        label: 'state',
-        type: 'text',
-        required: true
-    },
+      name: 'State',
+      label: 'State',
+      type: 'select',
+      required: true,
+      options: states.map(state => ({ label: state, value: state }))
+  },
     {
         name: 'Bedrooms',
         label: 'bedrooms',
         type: 'number',
-        required: true
     },
     {
         name: 'Days',

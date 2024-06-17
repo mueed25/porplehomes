@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { trpc } from '@/trpc/client';
 import { Advert} from '@/payload-types';
+import Image from 'next/image';
 
 const images = [
   'https://via.placeholder.com/800x400?text=Image+1',
@@ -84,7 +85,8 @@ const Carousel = () => {
             )}
           >
             {/* {srcs.map( src => ( */}
-                <img
+                <Image
+                fill
                 src={src}
                 alt={`Image ${index + 1}`}
                 className="object-cover w-full h-full rounded-lg" // Added rounded corners

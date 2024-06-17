@@ -3,6 +3,7 @@ import { Icon } from '@radix-ui/react-select'
 import Link from 'next/link'
 import {TentTree, Armchair, ArrowLeft, ArrowRight,ChevronLeft, ChevronRight, Home, ShoppingBag, Sofa, Store, icons , School, Warehouse, Briefcase, UtilityPole, PersonStanding, Speech} from 'lucide-react';
 import Image from 'next/image'
+import { ListIndexesCursor } from 'mongodb';
 
 const HorizontalScroll: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -93,9 +94,10 @@ const HorizontalScroll: React.FC = () => {
         style={{ scrollBehavior: 'smooth' }}
       >
         {/* Add your items here */}
-        {Icons.map(icon => {
+        {Icons.map((icon , index)=> {
                     return (
                         <Link
+                        key={index}
                         href={icon.message}
                         className='flex flex-col max-lg:px-4 lg:px-6  justify-center '>
                             <h2 className='flex justify-center'>{icon.icons}</h2>

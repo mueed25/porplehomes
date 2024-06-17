@@ -9,14 +9,16 @@ interface ImageSliderProps {
 const Agentholder = ({ urls }: ImageSliderProps) => {
   return (
     <div className='w-full h-full '>
-        {urls.map( url => {
+        {urls.map( (url, index) => {
             return (
+              <div key={index}>
                 <Image 
                 src={url} 
                 height={200}
                 width={200}
                 alt='Agent image' 
                 className="shadow-lg rounded-full " />
+                </div>
             )
         })}
         

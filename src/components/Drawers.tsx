@@ -51,9 +51,6 @@ const Drawers = () => {
     <div className='flex px-2 py-2 shadow-md rounded-full mr-2'>
         <Search />
     </div>
-    <div className='flex px-2 py-2 shadow-md rounded-full'>
-        <Globe />
-    </div>
   </div>
   </DrawerTrigger>
   <DrawerContent>

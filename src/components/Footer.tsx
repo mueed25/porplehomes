@@ -10,7 +10,7 @@ const Footer = () => {
         <div className='py-16 lg:px-8 px-4'>
             <MaxWidthWrapper className=' grid lg:grid-cols-2 grid-cols-1 gap-4'>
                 <div>
-                <h1 className='text-[1.5rem] pb-6'>Our trusted partners</h1> 
+                <h1 className='text-3xl font-semibold pb-6'>Our trusted partners</h1> 
                 <div className='grid grid-cols-2'>
                     
                     <div>
@@ -28,9 +28,9 @@ const Footer = () => {
                 </div>
                 </div>
                 <div className=' max-lg:pt-10'>
-                    <h1 className='text-[2rem] pb-6'>Explore our diffrent types of apartment</h1>
-                    <p className='text-muted-foreground'>
-                    Welcome to porplehomes, where innovation and elegance meet in the world of real estate. Explore our curated collection of stunning properties with a user-friendly interface and smart search options. Immerse yourself in visual excellence through high-resolution images and virtual tours, while integrated maps help you understand the neighborhood. Save favorites, track searches, and stay informed with personalized updates through a secure account. Connect effortlessly with property owners or agents and benefit from real community reviews. Prioritizing your privacy and security, porplehomes offers a seamless and protected property search experience. Start your journey today to find your dream home!
+                    <h1 className='text-3xl font-semibold pb-6'>Explore our diffrent types of apartment</h1>
+                    <p className='text-muted-foreground text-md'>
+                    Welcome to porplehomes, where innovation and elegance meet in the world of real estate. Explore our curated collection of stunning properties with a user-friendly interface and smart search options. Immerse yourself in visual excellence through high-resolution images and virtual tours, while integrated maps help you understand the neighborhood. Save favorites, track searches, and stay informed with personalized updates through a secure account. Connect effortlessly with property owners or agents and benefit from real community reviews. 
                     </p>
                 </div>
             </MaxWidthWrapper>

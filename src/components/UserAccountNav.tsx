@@ -1,7 +1,7 @@
 'use client'
 
 import { User } from '@/payload-types'
-import { Button } from './ui/button'
+import { Button, buttonVariants } from './ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -51,7 +51,7 @@ const UserAccountNav = ({ user }: { user: string  }) => {
         <div className='flex items-center justify-start gap-2 p-2'>
           <div className='flex flex-col space-y-0.5 leading-none'>
             <p className='font-medium text-sm text-black'>
-              {/* {user.email} */} mueedmuhammad605@gmail.com
+              {user == 'y'? 'User ': user}
             </p>
           </div>
         </div>
@@ -71,13 +71,19 @@ const UserAccountNav = ({ user }: { user: string  }) => {
         <DropdownMenuItem
         onClick={signIn}
         className='cursor-pointer'>
-        Sign In
+        <Link
+            href='/sign-in'>
+            Sign in
+        </Link>
       </DropdownMenuItem>
 
         <DropdownMenuItem
         onClick={signUp}
         className='cursor-pointer'>
-        Create Account
+        <Link
+            href='/sign-up'>
+            Create Account
+        </Link>
       </DropdownMenuItem>
       </div>
       ): (

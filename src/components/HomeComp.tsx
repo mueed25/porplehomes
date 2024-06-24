@@ -254,7 +254,7 @@ const HomeComp = () => {
       <section className='py-6 max-lg:px-4 '>
         <MaxWidthWrapper className='grid lg:grid-cols-2 grid-cols-1 gap-4'>
           <div>
-            <h1 className='text-[2rem]' >Why Porplehomes?</h1>
+            <h1 className='text-3xl font-semibold' >Why Porplehomes?</h1>
             <div className='pt-4'>
               {cat.map((list, index) => (
                 <div className='flex py-4' key={index}>
@@ -262,7 +262,7 @@ const HomeComp = () => {
                   <Image alt='logo' className='rounded-full shadow-lg' src={list.image} width={50} height={50} />
                   </div>
                   <div>
-                    <h3 className='text-[1.2rem]'>{list.heading}</h3>
+                    <h3 className='text-lg '>{list.heading}</h3>
                     <p className='text-muted-foreground'>{list.text}</p>
                   </div>
                 </div>
@@ -270,7 +270,7 @@ const HomeComp = () => {
             </div>
           </div>
           
-          <div className='h-full w-full relative flex items-center max-lg:h-[400px] max-lg:pt-16'>
+          <div className='h-full w-full relative flex items-center max-lg:h-[350px] max-lg:pt-16'>
           <div className='h-full w-full absolute flex items-center justify-end'>
             <div className='h-full w-10/12 border flex justify-end relative'>
                   <Image src='/homepage3.png' alt='image' className='absolute' fill />
@@ -280,7 +280,6 @@ const HomeComp = () => {
           </div>
         </MaxWidthWrapper>
       </section>
-        
         </div>
 )}
     </div>

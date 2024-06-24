@@ -11,6 +11,7 @@ import AllButtons from './AllButtons'
 import IconsView from './IconsView'
 import Drawers from './Drawers'
 import {Separator} from '@/components/ui/separator'
+import { Input } from './ui/input'
 
 const HomeNav = async () => {
   const nextCookies = cookies()
@@ -37,27 +38,26 @@ const HomeNav = async () => {
               </div>
 
             <div className='flex items-center justify-center w-full    max-md:w-full max-md:justify-end pr-2 max-sm:hidden '>
-              <div className='flex rounded-full shadow-md px-2 py-2'>
-                <div className=' flex items-center px-4'>
-                <p className='text-muted-foreground'>AnyWhere</p>
-                <span
-                      className='h-6 w-px bg-white'
-                      aria-hidden='true'
-                    />
+              <div className='flex rounded-full shadow-md mx-4 px-2 py-1'>
+                <div className=' flex items-center px-2'>
+                <Input
+                className='border-0'
+                placeholder='AnyWeek' />
                 </div>
-                <div className=' flex items-center px-4'>
-                  <p className='text-muted-foreground'>AnyWeek</p>
-                  <span
-                      className='h-6 w-px bg-white '
-                      aria-hidden='true'
-                    />
+                <div className=' flex items-center px-2'>
+                  <Input
+                  className='border-0'
+                  placeholder='AnyWeek' />
                     </div>
-                    <div className=' flex items-center px-4'>
-                    <p className='text-muted-foreground'>AnyWeek</p>
-                    </div>
-                    <AllButtons className='rounded-full max-sm:bg-purple-900 '>
-                      <Search />
-                    </AllButtons>
+                    <div className=' flex items-center px-2'>
+                    <Input
+                    className='border-0'
+                      placeholder='AnyWeek' />                    
+                  </div>
+
+                    <button className='px-2 py-2 shadow-md bg-purple-800 rounded-full '>
+                      <Search className='text-white'/>
+                    </button>
               </div>
               </div>
 
@@ -67,8 +67,9 @@ const HomeNav = async () => {
 
 
               <div className='flex items-center justify-end max-sm:ml-2'>
-              <div className='bg-white shadow-md rounded-full flex border px-2 py-1 '>
-                      <UserAccountNav user='y'/>
+              <div className='bg-white shadow-md rounded-full flex border px-1 py-1 '>
+                {user?  <UserAccountNav user={user.email}/>:  <UserAccountNav user='y'/>}
+                     
                       <div className='flex justify-center items-center px-2'>
                       <User />
                       </div>

@@ -15,18 +15,16 @@ import {ArrowLeft} from 'lucide-react'
 
 const page = () => {
   return (
-    <div className='pt-4 flex justify-center  w-full'>
+    <div className=' sm:pt-4 flex justify-center  w-full'>
       <MaxWidthWrapper>
+        
         <div className='pb-2'>
-          <div className='hidden max-md:flex'>
-            <ArrowLeft />
-          </div>
-          <div className='flex flex-col justify-center w-full'>
-          <h1 className='font-semibold text-2xl'>Upgrade To Add More</h1>
+          <div className='max-sm:pt-4 flex flex-col justify-center w-full'>
+          <h1 className='font-semibold text-2xl '>Upgrade To Add More</h1>
           <p className='text-muted-foreground'>Upgrade and get access to most of the cool features using the plans before.</p>
           </div>
 
-          <div className='flex justify-center pt-8 max-md:flex-col  max-md:justify-center pb-6'>
+          <div className='flex justify-center max-sm:pt-6 pt-8 max-md:flex-col  max-md:justify-center pb-6'>
             <div className='md:mr-4'><Card>
                 <CardHeader>
                 <CardTitle>Standard</CardTitle>

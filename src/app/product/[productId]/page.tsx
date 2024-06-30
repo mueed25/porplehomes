@@ -65,13 +65,15 @@ const Page = async ({ params }: PageProps) => {
     .filter(Boolean) as string[]
 
     
+    const valindagentimage = product.agentimage
+    .map(({ agentimages }) =>
+      typeof agentimages === 'string' ? agentimages : agentimages.url
+    )
+    .filter(Boolean) as string[]
 
-    const tenantData = {
-      imageUrl: 'https://via.placeholder.com/200',
-      name: 'Ahmad Muhammad',
-      description: '09123454323.',
-      contactUrl: 'john.doe@example.com',
-    };
+   
+
+    const mockup = ['https://via.placeholder.com/200']
 
     
 
@@ -211,17 +213,17 @@ const Page = async ({ params }: PageProps) => {
         
             <div className='rounded-full shadoow-lg w-[200px] h-[200px] my-2 border'>
             {/* {validUrls.map( url => ( */}
-               <Agentholder urls={validUrls}/>
+            {valindagentimage?  <Agentholder urls={valindagentimage} /> : <Agentholder urls={mockup} />}
             {/* )
             )} */}
             </div>
           </div>
 
           <div className='px-8'>
-             <h2 className="text-2xl font-bold  max-lg:py-6 ">{tenantData.name}</h2>
+             <h2 className="text-2xl font-bold  max-lg:py-6 ">{product.Agent_full_name}</h2>
             <p className='pb-4 text-muted-foreground '>Contact for instant property tour for RENT/BUY</p>
-            <p className="text-gray-700 mb-2 pt-2 flex "><PhoneCall className='mr-4 text-gray-800'/> {tenantData.description}</p>
-            <p className="text-gray-700 mb-2 pb-4 flex "><Mail className='mr-4 text-gray-800'/> {tenantData.contactUrl}</p>
+            <p className="text-gray-700 mb-2 pt-2 flex "><PhoneCall className='mr-4 text-gray-800'/> {product.AgentContact_number}</p>
+            <p className="text-gray-700 mb-2 pb-4 flex "><Mail className='mr-4 text-gray-800'/> {product.Agent_Gmail}</p>
 
             <div className='pb-6'>
               <h2 className='text-xl font-bold pb-2'>Host Details</h2>

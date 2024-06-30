@@ -109,23 +109,6 @@ const page = async () => {
   const [order] = allorders
   const [product] = allproduct
 
-  
-
-  // const filtered = (or as Property[]).map(prod => prod.id)
-
-//   const {docs : product } = await payload.find({
-//     collection: 'property',
-//     where: {
-//         id: {
-//             in: filtered.map(prod => prod)
-//         }
-//     }
-// })
-
-// const filteredProduct = product.filter( prod => Boolean(prod.price))
-
-
-
 
 const Admins = allorders?.map(items => (items.products as Property[]).map((balance) => balance.price)).flat()
 
@@ -134,11 +117,14 @@ const AdminBalance = Admins?.reduce((total, balance) => {
   return total + (balance)
 })
 
+console.log(AdminBalance)
 const UsersBalance = allUserOrders?.map(items => (items.products as Property[]).map((balance) => balance.price)).flat()
 
-const userBalance = Admins?.reduce((total, balance) => {
+const userBalance = UsersBalance?.reduce((total, balance) => {
   return total + (balance)
 })
+
+console.log(userBalance)
 // const Adminbalance = allorders.reduce( (total, balance) => {
 //   // return (balan)
 // })
@@ -194,10 +180,12 @@ const userBalance = Admins?.reduce((total, balance) => {
             <div className=' shadow-lg rounded-xl py-2'>
                 <h2 className='px-4 py-4 font-semibold'>Message From Tenants</h2>
                   <Separator />
-                  <div className='px-4'>
+                  <div className={cn(' max-sm:px-1', 
+                    !allmessages? 'h-48' : ''
+                  )}>
                   {allmessages.slice(0,4).map(items => (
                         <div key={items.id}>
-                            <div className='flex px-4 py-2'>
+                            <div className='flex px-2 py-2'>
                               <div className='flex justify-center items-center px-2 mx-2  bg-purple-300'>
                                 <MessageCircleIcon color='#7623BA'/>
                               </div>
@@ -219,12 +207,14 @@ const userBalance = Admins?.reduce((total, balance) => {
                   <div className=' shadow-lg rounded-xl py-2'>
                 <h2 className='px-4 py-4 text-md font-bold text-purple-800'>Recent Payment Recieved</h2>
                   <Separator />
-                  <div className='px-4'>
+                  <div className={cn(' max-sm:px-1', 
+                    !allorders? 'h-48' : ''
+                  )}>
                   {/* {TenantMessage.map( props => ( */}
                   {allorders.slice(0,4).map(items => (
                         <div key={items.id}>
                           {(items.products as Property[]).map(item => (
-                            <div key={item.id} className='flex px-4 py-2'>
+                            <div key={item.id} className='flex px-2 py-2'>
                               <div className='flex justify-center items-center px-2 mx-2  bg-purple-300 rounded-md'>
                                 <Landmark color='#7623BA'/>
                               </div>
@@ -295,7 +285,7 @@ const userBalance = Admins?.reduce((total, balance) => {
                   <div className='flex h-full pt-8 py-4 px-4 items-center'>
                     <div className='flex-col h-40 w-40 rounded-full border-8 border-[#7623BA] flex justify-center items-center'>
                         <h3 className='font-semibold'>Balance</h3>
-                        <p className='font-semibold '>NGN {UsersBalance.length !== 0 ? userBalance : ' **** '}</p>
+                        <p className='font-semibold '>{UsersBalance.length !== 0 ? <Visible balance={userBalance} /> : ' **** '}</p>
                     </div>
                     <div>
                     <div className=' flex flex-col  px-10 align-left max-sm:hidden'>
@@ -321,17 +311,21 @@ const userBalance = Admins?.reduce((total, balance) => {
             </div>
 
 
-            <div className=' shadow-md rounded-xl py-2 min-h-40 '>
+            <div className={cn('shadow-md rounded-xl py-2 min-h-40 ', 
+              !allUserOrders? 'min-h-40' : ''
+            )}>
                 <h2 className='px-4 py-4 font-bold text-md text-purple-800'>Recent Payment Recieved</h2>
                   <Separator />
-                  <div className='px-4 max-sm:h-48'>
-                  {/* {TenantMessage.map( props => ( */}
+                  <div className={cn(' max-sm:px-1', 
+                    !allUserOrders? 'h-48' : ''
+                  )}>
+                  {/* {TenantMessage.map( pr ops => ( */}
                   {allUserOrders.slice(0,4).map(items => (
                         <div key={items.id}>
                           {(items.products as Property[]).map(item => (
                             <div key={items.id}>
                             {(items.products as Property[]).map(item => (
-                              <div key={item.id} className='flex px-4 py-2'>
+                              <div key={item.id} className='flex px-2 py-2'>
                                 <div className='flex justify-center items-center px-2 mx-2  bg-purple-300 rounded-md'>
                                   <Landmark color='#7623BA'/>
                                 </div>
@@ -365,14 +359,16 @@ const userBalance = Admins?.reduce((total, balance) => {
                 <h2 className='px-4 py-4 font-bold text-md text-purple-800'>Recent Members/Tenants</h2>
                 <div className='min-h-44'>
                   <Separator />
-                  <div className='px-4 max-sm:h-48'>
+                  <div className={cn(' max-sm:px-1', 
+                    !allUserproduct? 'h-48' : ''
+                  )}>
                   {/* {TenantMessage.map( props => ( */}
                   {allUserproduct.slice(0,4).map(items => (
                         <div key={items.id}>
                           {(items.products as Property[]).map(item => (
                             <div key={items.id}>
                             {(items.products as Property[]).map(item => (
-                              <div key={item.id} className='flex px-4 py-2'>
+                              <div key={item.id} className='flex px-2 py-2'>
                                 <div className='flex justify-center items-center px-2 mx-2  bg-purple-300 rounded-md'>
                                   <ClipboardType color='#7623BA'/>
                                 </div>

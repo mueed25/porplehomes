@@ -27,6 +27,10 @@ export interface Config {
   };
   globals: {};
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
 export interface User {
   id: string;
   products?: (string | Property)[] | null;
@@ -45,6 +49,10 @@ export interface User {
   lockUntil?: string | null;
   password: string | null;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "property".
+ */
 export interface Property {
   id: string;
   user?: (string | null) | User;
@@ -53,8 +61,9 @@ export interface Property {
     agentimages: string | Agentmedia;
     id?: string | null;
   }[];
-  Manager_full_name: string;
-  Comapany_Contact_number: string;
+  Agent_full_name: string;
+  AgentContact_number: string;
+  Agent_Gmail: string;
   name: string;
   unit_building: string;
   unit_category: string;
@@ -101,7 +110,7 @@ export interface Property {
     | 'Yobe'
     | 'Zamfara'
     | 'Federal Capital Territory (FCT)';
-  Bedrooms: number;
+  Bedrooms?: number | null;
   Days: string;
   property_files?: (string | null) | PropertyFile;
   approvedForSale?: ('pending' | 'approved' | 'denied') | null;
@@ -112,6 +121,10 @@ export interface Property {
   updatedAt: string;
   createdAt: string;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "agentmedia".
+ */
 export interface Agentmedia {
   id: string;
   user?: (string | null) | User;
@@ -123,6 +136,8 @@ export interface Agentmedia {
   filesize?: number | null;
   width?: number | null;
   height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
   sizes?: {
     thumbnail?: {
       url?: string | null;
@@ -132,24 +147,12 @@ export interface Agentmedia {
       filesize?: number | null;
       filename?: string | null;
     };
-    card?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    tablet?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
   };
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "property_files".
+ */
 export interface PropertyFile {
   id: string;
   user?: (string | null) | User;
@@ -161,7 +164,13 @@ export interface PropertyFile {
   filesize?: number | null;
   width?: number | null;
   height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
 export interface Media {
   id: string;
   user?: (string | null) | User;
@@ -173,6 +182,8 @@ export interface Media {
   filesize?: number | null;
   width?: number | null;
   height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
   sizes?: {
     thumbnail?: {
       url?: string | null;
@@ -200,6 +211,10 @@ export interface Media {
     };
   };
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "orders".
+ */
 export interface Order {
   id: string;
   _isPaid: boolean;
@@ -209,6 +224,10 @@ export interface Order {
   updatedAt: string;
   createdAt: string;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "workers".
+ */
 export interface Worker {
   id: string;
   user?: (string | null) | User;
@@ -218,6 +237,10 @@ export interface Worker {
   updatedAt: string;
   createdAt: string;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Tenant".
+ */
 export interface Tenant {
   id: string;
   user?: (string | null) | User;
@@ -231,6 +254,10 @@ export interface Tenant {
   updatedAt: string;
   createdAt: string;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Tenant1".
+ */
 export interface Tenant1 {
   id: string;
   Full_name: string;
@@ -245,6 +272,10 @@ export interface Tenant1 {
   updatedAt: string;
   createdAt: string;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Announce".
+ */
 export interface Announce {
   id: string;
   Email: string;
@@ -253,6 +284,10 @@ export interface Announce {
   updatedAt: string;
   createdAt: string;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TenantM".
+ */
 export interface TenantM {
   id: string;
   Email: string;
@@ -262,6 +297,10 @@ export interface TenantM {
   updatedAt: string;
   createdAt: string;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "subscription".
+ */
 export interface Subscription {
   id: string;
   user?: (string | null) | User;
@@ -269,6 +308,10 @@ export interface Subscription {
   updatedAt: string;
   createdAt: string;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "advertisement".
+ */
 export interface Advertisement {
   id: string;
   user?: (string | null) | User;
@@ -280,6 +323,8 @@ export interface Advertisement {
   filesize?: number | null;
   width?: number | null;
   height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
   sizes?: {
     thumbnail?: {
       url?: string | null;
@@ -307,6 +352,10 @@ export interface Advertisement {
     };
   };
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "advert".
+ */
 export interface Advert {
   id: string;
   user?: (string | null) | User;
@@ -318,6 +367,10 @@ export interface Advert {
   updatedAt: string;
   createdAt: string;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-preferences".
+ */
 export interface PayloadPreference {
   id: string;
   user: {
@@ -337,6 +390,10 @@ export interface PayloadPreference {
   updatedAt: string;
   createdAt: string;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-migrations".
+ */
 export interface PayloadMigration {
   id: string;
   name?: string | null;

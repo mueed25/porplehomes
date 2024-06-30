@@ -1,4 +1,5 @@
 'use client'
+import { Property } from '@/payload-types'
 import Image from 'next/image'
 import React from 'react'
 

@@ -61,12 +61,12 @@ const HomeNav = async () => {
               </div>
               </div>
 
-              <div className='max-sm:flex hidden w-full pr-2 justify-end'>
+              <div className='max-sm:flex hidden w-full  justify-end'>
                 <Drawers />
               </div>
 
 
-              <div className='flex items-center justify-end max-sm:ml-2'>
+              <div className='flex items-center justify-end max-sm:ml-1'>
               <div className='bg-white shadow-md rounded-full flex border px-1 py-1 '>
                 {user?  <UserAccountNav user={user.email}/>:  <UserAccountNav user='y'/>}
                      

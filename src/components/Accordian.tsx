@@ -31,7 +31,7 @@ const Accordian = (properties: Props) => {
                 <Separator />
                 <h2 className='flex justify-center text-lg font-semibold pt-4 pb-4 text-center'>Scan the Qrcode to BUY/RENT or pay your due rent </h2>
                 <div className='flex justify-center bg-white shadow-sm'><QRCode value={`http://www.porplehomes.com/product/${property.id}`} /></div>
-                <h2 className='flex justify-center text-lg font-semibold py-2 pt-6 text-center'>Or Contact {property.Comapany_Contact_number} </h2>
+                <h2 className='flex justify-center text-lg font-semibold py-2 pt-6 text-center'>Or Contact {property.AgentContact_number} </h2>
               </div>
             </AccordionContent>
           </AccordionItem>
